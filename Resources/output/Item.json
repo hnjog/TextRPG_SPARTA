@@ -1,1 +1,1 @@
-﻿[{"Effect":"Heal","Idx":"1","Name":"회복포션","Type":"Consume","Value":"50"},{"Effect":"IncreaseAttack","Idx":"2","Name":"분노의영약","Type":"Consume","Value":"10"}]
+﻿[{"Effect":"Heal","Idx":"1","IsConsumable":"o","IsStackable":"o","Name":"회복포션","Price":"10","Value":"50"},{"Effect":"IncreaseAttack","Idx":"2","IsConsumable":"o","IsStackable":"o","Name":"분노의영약","Price":"15","Value":"10"}]
