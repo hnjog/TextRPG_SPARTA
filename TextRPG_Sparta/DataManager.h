@@ -5,7 +5,7 @@
 #include <mutex>
 #include "JsonParser.h"
 
-#include "ItemBase.h"
+#include "ItemData.h"
 
 class DataManager {
 public:
@@ -15,7 +15,7 @@ public:
     bool Initialize();
 
     // 소유권 이전(move-out). 두 번째 호출부터는 빈 벡터가 나감.
-    std::vector<ItemBase> TakeItems();
+    std::vector<ItemData> TakeItems();
 
 private:
     DataManager() = default;
@@ -30,7 +30,6 @@ private:
 
     // 개별 로더
     void LoadItemsJson(const JsonValue& root);
-    ItemType ParseItemType(const std::string& sRaw);
 
 #ifdef _WIN32
     std::string  ToUtf8(const std::wstring& w) const;
@@ -40,5 +39,5 @@ private:
 private:
     bool initialized = false;
 
-    std::vector<ItemBase> itemDataVector;
+    std::vector<ItemData> itemDataVector;
 };

@@ -166,7 +166,7 @@ void DataManager::LoadItemsJson(const JsonValue& root)
 		if (obj.type != JsonValue::Type::Object)
 			continue;
 
-		ItemBase it;
+		ItemData it;
 
 		const JsonValue* pIdx = obj.get("Idx");
 		if (pIdx)
@@ -185,12 +185,6 @@ void DataManager::LoadItemsJson(const JsonValue& root)
 		if (pEffect && pEffect->type == JsonValue::Type::String)
 			it.effect = (pEffect->str);
 
-		const JsonValue* pType = obj.get("Type");
-		if (pType && pType->type == JsonValue::Type::String)
-		{
-			it.type = ParseItemType(pType->str);
-		}
-
 		const JsonValue* pValue = obj.get("Value");
 		if (pValue)
 		{
@@ -200,23 +194,39 @@ void DataManager::LoadItemsJson(const JsonValue& root)
 				it.value = static_cast<int>(pValue->number);
 		}
 
+		const JsonValue* pPrice = obj.get("Price");
+		if (pPrice)
+		{
+			if (pPrice->type == JsonValue::Type::String)
+				it.price = static_cast<int>(std::strtol(pPrice->str.c_str(), nullptr, 10));
+			else if (pPrice->type == JsonValue::Type::Number)
+				it.price = static_cast<int>(pPrice->number);
+		}
+
+		const JsonValue* pIsConsumable = obj.get("IsConsumable");
+		if (pIsConsumable && pIsConsumable->type == JsonValue::Type::String)
+		{
+			if (pIsConsumable->str == "o")
+				it.isConsumable = true;
+			else
+				it.isConsumable = false;
+		}
+
+		const JsonValue* pIsStackable = obj.get("IsStackable");
+		if (pIsStackable && pIsStackable->type == JsonValue::Type::String)
+		{
+			if (pIsStackable->str == "o")
+				it.isStackable = true;
+			else
+				it.isStackable = false;
+		}
+
 		itemDataVector.push_back(it);
 	}
 }
 
-ItemType DataManager::ParseItemType(const std::string& sRaw)
-{
-	std::string s;
-	s.reserve(sRaw.size());
-	for (char c : sRaw)
-		s.push_back((char)std::tolower((unsigned char)c));
-	if (s == "consume")
-		return IT_CONSUME;
-	return IT_NONE;
-}
-
 // ---------- Move-out ----------
-std::vector<ItemBase> DataManager::TakeItems()
+std::vector<ItemData> DataManager::TakeItems()
 {
 	return std::move(itemDataVector);
 }
