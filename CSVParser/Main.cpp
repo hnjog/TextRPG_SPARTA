@@ -7,9 +7,11 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <algorithm>
 #include <iomanip>
 #include <filesystem>
+#include <cctype>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -17,6 +19,11 @@
 
 using namespace std;
 namespace fs = std::filesystem;
+
+// 시트별로 "정수 배열로 뽑을 컬럼"을 지정
+static const std::unordered_map<std::string, std::unordered_set<std::string>> kIntArrayFields = {
+	{ "Shop", { "ItemIdxList", "Stock" } } // 필요하면 여기에 추가
+};
 
 // -------------------- 유틸: 트림 --------------------
 static inline string ltrim(string s) { s.erase(s.begin(), find_if(s.begin(), s.end(), [](unsigned char c) {return !isspace(c); })); return s; }
@@ -180,6 +187,119 @@ string jsonArray(const vector<string>& elems) {
 	out += "]";
 	return out;
 }
+
+// 양끝 큰따옴표 제거 (있으면)
+static inline std::string unquote_if_wrapped(std::string s) {
+	if (s.size() >= 2 && s.front() == '"' && s.back() == '"')
+		s = s.substr(1, s.size() - 2);
+	return s;
+}
+
+static inline void trim_inplace(std::string& s) {
+	size_t b = 0, e = s.size();
+	while (b < e && std::isspace(static_cast<unsigned char>(s[b]))) ++b;
+	while (e > b && std::isspace(static_cast<unsigned char>(s[e - 1]))) --e;
+	s = s.substr(b, e - b);
+}
+
+static inline bool is_integer(const std::string& s) {
+	if (s.empty()) return false;
+	size_t i = 0;
+	if (s[0] == '+' || s[0] == '-') i = 1;
+	if (i >= s.size()) return false;
+	for (; i < s.size(); ++i)
+		if (!std::isdigit(static_cast<unsigned char>(s[i]))) return false;
+	return true;
+}
+
+// "1,2,3,4"  ->  "[1,2,3,4]"
+static std::string make_json_int_array(std::string cell, char delim = ',') {
+	cell = unquote_if_wrapped(cell);
+	std::istringstream iss(cell);
+	std::string token;
+	std::string out = "[";
+	bool first = true;
+	while (std::getline(iss, token, delim)) {
+		trim_inplace(token);
+		if (token.empty()) continue;
+		if (!is_integer(token)) continue; // 숫자만 반영 (안전)
+		if (!first) out += ",";
+		out += token; // 숫자는 그대로
+		first = false;
+	}
+	out += "]";
+	return out;
+}
+
+// 가정: rows 는 vector<unordered_map<string,string>> 형태 (컬럼명 -> 셀 문자열)
+static std::string json_escape(const std::string& s) {
+	std::string out; out.reserve(s.size() + 8);
+	for (char c : s) {
+		switch (c) {
+		case '\"': out += "\\\""; break;
+		case '\\': out += "\\\\"; break;
+		case '\b': out += "\\b";  break;
+		case '\f': out += "\\f";  break;
+		case '\n': out += "\\n";  break;
+		case '\r': out += "\\r";  break;
+		case '\t': out += "\\t";  break;
+		default:
+			if (static_cast<unsigned char>(c) < 0x20) {
+				char buf[7]; std::snprintf(buf, sizeof(buf), "\\u%04x", c & 0xff);
+				out += buf;
+			}
+			else out += c;
+		}
+	}
+	return out;
+}
+
+std::string toJson_IntArraysAware(
+	const std::string& sheetName,
+	const std::vector<std::unordered_map<std::string, std::string>>& rows)
+{
+	// 이 시트에서 배열로 뽑을 컬럼 집합 찾기
+	std::unordered_set<std::string> intArrayCols;
+	if (auto it = kIntArrayFields.find(sheetName); it != kIntArrayFields.end())
+		intArrayCols = it->second;
+
+	std::string json = "[";
+	bool firstRow = true;
+
+	for (const auto& row : rows) {
+		if (!firstRow) json += ",";
+		json += "{";
+		bool firstCol = true;
+
+		for (const auto& kv : row) {
+			const std::string& col = kv.first;
+			std::string val = kv.second;
+
+			if (!firstCol) json += ",";
+			json += "\"" + json_escape(col) + "\":";
+
+			if (intArrayCols.find(col) != intArrayCols.end()) {
+				// 정수 배열 컬럼: "1,2,3" → [1,2,3]
+				json += make_json_int_array(val);
+			}
+			else {
+				// 그 외: 숫자면 숫자, 아니면 문자열
+				std::string unq = unquote_if_wrapped(val);
+				if (is_integer(unq)) json += unq;
+				else                 json += "\"" + json_escape(unq) + "\"";
+			}
+
+			firstCol = false;
+		}
+
+		json += "}";
+		firstRow = false;
+	}
+
+	json += "]";
+	return json;
+}
+
 
 // -------------------- 설정 구조 --------------------
 struct SheetConf {
@@ -471,7 +591,8 @@ int main(int argc, char** argv) {
 			continue;
 		}
 		auto rows = sliceTable(t, it->second, cfg.stopOnEmptyFirstColumn);
-		string j = toJson(rows);
+		//string j = toJson(rows);
+		std::string j = toJson_IntArraysAware(sheetName, rows);
 
 		fs::path outFile = outputDir / (sheetName + ".json");
 		ofstream out(outFile);
