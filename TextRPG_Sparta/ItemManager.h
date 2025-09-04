@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <vector>
 #include <string>
@@ -9,10 +9,11 @@ class ItemManager
 {
 public:
     void Init();
+    bool Init();
 
     void PrintAllItems();
 
 private:
-    std::vector<ItemData> itemDataVector;
+    std::unordered_map<int, ItemData> itemMapByIdx;
 };
 

@@ -1,14 +1,21 @@
-﻿#include "ItemManager.h"
+#include "ItemManager.h"
 #include "DataManager.h"
 
 void ItemManager::Init()
 {
-	itemDataVector.clear();
 	DataManager& DM = DataManager::Instance();
 	if (DM.Initialize() == false)
-		return;
+		return false;
 
-	itemDataVector = DM.TakeItems();
+	std::vector<ItemData> itemDataVector = DM.TakeItems();
+	itemMapByIdx.reserve(itemDataVector.size());
+
+	for (const auto& itemData : itemDataVector)
+	{
+		itemMapByIdx[itemData.idx] = itemData;
+	}
+
+	return true;
 }
 
 void ItemManager::PrintAllItems()
