@@ -10,7 +10,8 @@ class Player :
 private:
     int m_experience;
     int m_gold;
-    vector<ItemInstance> m_inventory;
+    int m_level;
+    vector<int> m_inventory;
 public:
     Player(string name, Stat stat);
     int GetCurrentGold() { return m_gold; }
