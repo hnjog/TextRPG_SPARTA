@@ -57,6 +57,9 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>GameManager</Filter>
     </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>Shop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataManager.h">
@@ -96,5 +99,8 @@
       <Filter>GameManager</Filter>
     </ClInclude>
     <ClInclude Include="EnemyData.h" />
+    <ClInclude Include="Shop.h">
+      <Filter>Shop</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
