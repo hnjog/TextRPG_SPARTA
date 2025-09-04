@@ -1,1 +1,1 @@
-﻿[{"ItemIdx":"1","Price":"50","ShopId":"1","Stock":"5"},{"ItemIdx":"2","Price":"50","ShopId":"2","Stock":"5"}]
+﻿[{"ItemIdxList":"\"1,2\"","Name":"초심자 상점","ShopId":"1","Stock":"\"5,5\""}]
