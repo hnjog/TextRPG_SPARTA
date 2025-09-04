@@ -1,6 +1,6 @@
 ﻿#include "HealEffect.h"
 
-const std::string& HealEffect::GetId()
+std::string HealEffect::GetId()
 {
 	return "Heal";
 }

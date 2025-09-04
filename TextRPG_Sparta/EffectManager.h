@@ -9,7 +9,7 @@ class EffectManager
 {
 public:
 	EffectManager& GetInstance();
-	void Register(std::string& id, EffectFactory& ef);
+	void Register(std::string&& id, EffectFactory& ef);
 	std::unique_ptr<IEffect> Create(const std::string& id) const;
 
 private:

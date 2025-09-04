@@ -18,7 +18,7 @@ class IEffect
 {
 public:
 	virtual bool Apply(EffectContext& effectContext) = 0;
-	virtual const std::string& GetId() = 0;
+	virtual std::string GetId() = 0;
 };
 
 using EffectFactory = std::function<std::unique_ptr<IEffect>()>;

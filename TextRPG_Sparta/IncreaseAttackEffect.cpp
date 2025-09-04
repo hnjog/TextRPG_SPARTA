@@ -1,6 +1,6 @@
 ﻿#include "IncreaseAttackEffect.h"
 
-const std::string& IncreaseAttackEffect::GetId()
+std::string IncreaseAttackEffect::GetId()
 {
 	return "IncreaseAttack";
 }
