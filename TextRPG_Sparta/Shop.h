@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <map>
+#include <string>
 #include <vector>
 
 using namespace std;
@@ -7,12 +8,13 @@ using namespace std;
 class Shop
 {
 private:
-	int shopID;//상점 번호
+	int id;//상점 번호
+	string name;//상점 이름
 	map<int, int> sellList;//판매 목록 <아이템 번호, 재고>
 
 public:
-	//상점 생성 (상점 번호 필요)
-	Shop(int shopID = 0);
+	//상점 생성 (상점 번호와 이름 필요)
+	Shop(int id = 0, string name = "");
 
 	//아이템 1종류를 지정한 개수만큼 추가
 	void AddItem(int itemID, int count = 1);

@@ -1,8 +1,9 @@
 ﻿#include "Shop.h"
 
-Shop::Shop(int shopID)
+Shop::Shop(int shopID, string shopName)
 {
-	this->shopID = shopID;
+	id = shopID;
+	name = shopName;
 }
 
 void Shop::AddItem(int itemID, int count)
