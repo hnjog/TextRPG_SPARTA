@@ -5,6 +5,7 @@
 #endif
 
 #include "GameManager.h"
+#include "ItemManager.h"
 
 using namespace std;
 
@@ -17,6 +18,8 @@ int main()
 #endif
 
     std::cout << "Hello World!\n";
+
+    ItemManager::GetInstance().Init();
 
     GameManager::Instance().StartGame();
 }

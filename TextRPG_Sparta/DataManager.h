@@ -7,6 +7,7 @@
 
 #include "ItemData.h"
 #include "ShopData.h"
+#include "EnemyData.h"
 
 class DataManager {
 public:
@@ -18,6 +19,7 @@ public:
     // 소유권 이전(move-out). 두 번째 호출부터는 빈 벡터가 나감.
     std::vector<ItemData> TakeItems();
     std::vector<ShopData> TakeShopDatas();
+    std::vector<EnemyData> TakeEnemyDatas();
 
 private:
     DataManager() = default;
@@ -33,6 +35,7 @@ private:
     // 개별 로더
     void LoadItemsJson(const JsonValue& root);
     void LoadShopJson(const JsonValue& root);
+    void LoadEnemyJson(const JsonValue& root);
 
 #ifdef _WIN32
     std::string  ToUtf8(const std::wstring& w) const;
@@ -44,4 +47,5 @@ private:
 
     std::vector<ItemData> itemDataVector;
     std::vector<ShopData> shopDataVector;
+    std::vector<EnemyData> enemyDataVector;
 };

@@ -1,0 +1,3 @@
+Idx,Name,BaseHp,BaseAttack,HpPerLevel,AttackPerLevel,DropGold,DropExp,DropItemIdx,DropItemChance
+1,고블린,30,6,10,2,12,50,"""1,2""","""20,5"""
+2,슬라임,35,4,15,2,10,50,"""1,2""","""30,0"""
