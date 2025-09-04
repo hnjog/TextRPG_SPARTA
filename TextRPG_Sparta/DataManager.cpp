@@ -1,4 +1,4 @@
-#include "DataManager.h"
+﻿#include "DataManager.h"
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -15,7 +15,7 @@
 #include <iostream>
 
 // ---------- Singleton ----------
-DataManager& DataManager::Instance()
+DataManager& DataManager::GetInstance()
 {
 	static DataManager inst;
 	return inst;
@@ -140,7 +140,7 @@ bool DataManager::Initialize()
 	{
 		std::string path = ResolveFromResourcesOutput("Shop.json");
 		JsonValue root = ParseJsonFile(path);
-		//LoadShopJson(root);
+		LoadShopJson(root);
 	}
 	catch (...)
 	{
@@ -225,8 +225,70 @@ void DataManager::LoadItemsJson(const JsonValue& root)
 	}
 }
 
+// ---------- JSON → Items ----------
+void DataManager::LoadShopJson(const JsonValue& root)
+{
+	shopDataVector.clear();
+
+	// 우리가 쓰는 스키마: 최상위가 배열
+	if (root.type != JsonValue::Type::Array)
+		return;
+
+	shopDataVector.reserve(root.arr.size());
+	for (const auto& obj : root.arr) {
+		if (obj.type != JsonValue::Type::Object)
+			continue;
+
+		ShopData sd;
+
+		const JsonValue* sIdx = obj.get("ShopId");
+		if (sIdx)
+		{
+			if (sIdx->type == JsonValue::Type::String)
+				sd.shopIdx = static_cast<int>(std::strtol(sIdx->str.c_str(), nullptr, 10));
+			else if (sIdx->type == JsonValue::Type::Number)
+				sd.shopIdx = static_cast<int>(sIdx->number);
+		}
+
+		const JsonValue* sName = obj.get("Name");
+		if (sName && sName->type == JsonValue::Type::String)
+			sd.name = (sName->str);
+
+		const JsonValue* shopItemList = obj.get("ItemIdxList");
+		if (shopItemList && shopItemList->type == JsonValue::Type::Array)
+		{
+			for (const auto& v : shopItemList->arr) 
+			{
+				if (v.type == JsonValue::Type::Number) 
+				{
+					sd.sellItemIdxVector.push_back(static_cast<int>(v.number));
+				}
+			}
+		}
+		
+		const JsonValue* shopStockList = obj.get("Stock");
+		if (shopStockList && shopStockList->type == JsonValue::Type::Array)
+		{
+			for (const auto& v : shopStockList->arr)
+			{
+				if (v.type == JsonValue::Type::Number)
+				{
+					sd.sellItemStockVector.push_back(static_cast<int>(v.number));
+				}
+			}
+		}
+
+		shopDataVector.push_back(sd);
+	}
+}
+
 // ---------- Move-out ----------
 std::vector<ItemData> DataManager::TakeItems()
 {
 	return std::move(itemDataVector);
+}
+
+std::vector<ShopData> DataManager::TakeShopDatas()
+{
+	return std::move(shopDataVector);
 }

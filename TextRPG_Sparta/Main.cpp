@@ -1,8 +1,12 @@
-#include <iostream>
+﻿#include <iostream>
 
 #ifdef _WIN32
 #include <windows.h>
 #endif
+
+#include "GameManager.h"
+
+using namespace std;
 
 int main()
 {
@@ -13,4 +17,6 @@ int main()
 #endif
 
     std::cout << "Hello World!\n";
+
+    GameManager::Instance().StartGame();
 }

@@ -126,6 +126,11 @@
   <ItemGroup>
     <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="HealEffect.cpp" />
+    <ClCompile Include="IncreaseAttackEffect.cpp" />
+    <ClCompile Include="ItemInstance.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -133,9 +138,17 @@
     <ClInclude Include="Character\CharacterBase.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="DataManager.h" />
+    <ClInclude Include="EffectDescriptor.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="EffectRegister.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="HealEffect.h" />
+    <ClInclude Include="IncreaseAttackEffect.h" />
     <ClInclude Include="ItemData.h" />
+    <ClInclude Include="ItemInstance.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="JsonParser.h" />
+    <ClInclude Include="ShopData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
