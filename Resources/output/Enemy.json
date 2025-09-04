@@ -1,0 +1,1 @@
+﻿[{"BaseHp":30,"Idx":1,"Name":"고블린","BaseAttack":6,"DropGold":12,"AttackPerLevel":2,"HpPerLevel":10,"DropExp":50,"DropItemIdx":[1,2],"DropItemChance":[20,5]},{"BaseHp":35,"Idx":2,"Name":"슬라임","BaseAttack":4,"AttackPerLevel":2,"DropGold":10,"HpPerLevel":15,"DropExp":50,"DropItemIdx":[1,2],"DropItemChance":[30,0]}]

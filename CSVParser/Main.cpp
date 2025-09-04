@@ -22,7 +22,8 @@ namespace fs = std::filesystem;
 
 // 시트별로 "정수 배열로 뽑을 컬럼"을 지정
 static const std::unordered_map<std::string, std::unordered_set<std::string>> kIntArrayFields = {
-	{ "Shop", { "ItemIdxList", "Stock" } } // 필요하면 여기에 추가
+	{ "Shop", { "ItemIdxList", "Stock" } }, // 필요하면 여기에 추가
+	{ "Enemy", { "DropItemIdx", "DropItemChance" } },
 };
 
 // -------------------- 유틸: 트림 --------------------
@@ -567,7 +568,8 @@ int main(int argc, char** argv) {
 	// 기본 설정(예시). config.json이 있으면 덮어씌움.
 	cfg.sheets = {
 		{"Item", SheetConf{ "A2", {"Idx","Name","Effect","Value","Price","IsConsumable","IsStackable"}}},
-		{"Shop", SheetConf{ "A2", {"Name","ShopId","ItemIdxList","Stock"} }}
+		{"Shop", SheetConf{ "A2", {"Name","ShopId","ItemIdxList","Stock"} }},
+		{"Enemy", SheetConf{ "A2", {"Idx","Name","BaseHp","BaseAttack","HpPerLevel","AttackPerLevel","DropGold","DropExp","DropItemIdx","DropItemChance"}}}
 	};
 	loadConfigJson(configPath, cfg);
 
