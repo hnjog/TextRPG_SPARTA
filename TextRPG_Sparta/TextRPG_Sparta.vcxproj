@@ -129,6 +129,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character\CharacterBase.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="ItemData.h" />
     <ClInclude Include="ItemManager.h" />
