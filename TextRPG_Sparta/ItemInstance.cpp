@@ -1,6 +1,7 @@
 ﻿#include "ItemInstance.h"
 #include "EffectManager.h"
 #include "EffectDescriptor.h"
+#include<memory>
 
 ItemInstance::ItemInstance()
 	:stock(0)
@@ -30,13 +31,28 @@ ItemInstance::ItemInstance(ItemData& itemData, int amount)
 
 bool ItemInstance::UseItem(CharacterBase* target)
 {
+	if (target == nullptr)
+		return false;
+
+	if (true == itemData.isConsumable&&
+		stock < 1)
+	{
+		return false;
+	}
+
 	EffectManager& effectManager = EffectManager::GetInstance();
 	EffectContext context;
 	context.target = target;
 	context.value = itemData.value;
-	if (effectManager.Create(itemData.effect)->Apply(context))
+
+	std::unique_ptr<IEffect> effect = effectManager.Create(itemData.effect);
+	// 없는 effect
+	if (effect == nullptr)
+		return false;
+
+	if (effect->Apply(context))
 	{
-		if (itemData.isConsumable)
+		if (true == itemData.isConsumable)
 		{
 			stock--;
 		}
