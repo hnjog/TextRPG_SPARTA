@@ -11,14 +11,14 @@ private:
     int m_experience;
     int m_gold;
     int m_level;
-    vector<int> m_inventory;
+    vector<ItemInstance*> m_inventory;
 public:
     Player(string name, Stat stat);
     int GetCurrentGold() { return m_gold; }
     int GetCurrentExp() { return m_experience; }
 
     bool UseItem(int idx, CharacterBase* target);
-    void GetItem(int idx);
+    void GetItem(ItemInstance* item);
 
     virtual void DisplayStat()override;
     virtual void TakeDamage(int damage)override;
