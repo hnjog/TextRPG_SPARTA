@@ -143,6 +143,7 @@
     <ClInclude Include="ItemInstance.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="JsonParser.h" />
+    <ClInclude Include="ShopData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -25,6 +25,9 @@
     <Filter Include="Effect\DetailEffects">
       <UniqueIdentifier>{3013191d-3a26-4b74-8043-1b43b32c7965}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shop">
+      <UniqueIdentifier>{65e9bbe4-bc07-4c0d-9f38-ef6f6f02231c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="ItemInstance.h">
       <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopData.h">
+      <Filter>Shop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
