@@ -19,6 +19,9 @@
     <Filter Include="Item">
       <UniqueIdentifier>{5ed25951-52fb-4b45-8615-33473acef839}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{a0993e07-2b1d-4367-9aa8-644ed411d92f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -29,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="ItemManager.cpp">
       <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +49,15 @@
     </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectDescriptor.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectRegister.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
