@@ -14,7 +14,7 @@ private:
 
 public:
 	//상점 생성 (상점 번호와 이름 필요)
-	Shop(int id = 0, string name = "");
+	Shop(int shopID = 0, string shopName = "");
 
 	//아이템 1종류를 지정한 개수만큼 추가
 	void AddItem(int itemID, int count = 1);
