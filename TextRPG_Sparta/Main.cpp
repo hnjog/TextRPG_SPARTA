@@ -4,6 +4,10 @@
 #include <windows.h>
 #endif
 
+#include "GameManager.h"
+
+using namespace std;
+
 int main()
 {
 #ifdef _WIN32
@@ -13,4 +17,6 @@ int main()
 #endif
 
     std::cout << "Hello World!\n";
+
+    GameManager::Instance().StartGame();
 }

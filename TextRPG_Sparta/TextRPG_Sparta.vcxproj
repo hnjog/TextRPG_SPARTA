@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HealEffect.cpp" />
     <ClCompile Include="IncreaseAttackEffect.cpp" />
     <ClCompile Include="ItemInstance.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="EffectDescriptor.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="EffectRegister.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="HealEffect.h" />
     <ClInclude Include="IncreaseAttackEffect.h" />
     <ClInclude Include="ItemData.h" />
