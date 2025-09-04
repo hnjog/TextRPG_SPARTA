@@ -18,5 +18,9 @@ public:
 
     bool UseItem(int idx, CharacterBase* target);
     void GetItem(int idx);
+
+    virtual void DisplayStat()override;
+    virtual void TakeDamage(int damage)override;
+    virtual bool IsDead()override;
 };
 
