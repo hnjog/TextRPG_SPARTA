@@ -95,5 +95,6 @@
     <ClInclude Include="GameManager.h">
       <Filter>GameManager</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyData.h" />
   </ItemGroup>
 </Project>
