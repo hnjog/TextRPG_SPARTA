@@ -19,6 +19,10 @@
     <Filter Include="Item">
       <UniqueIdentifier>{5ed25951-52fb-4b45-8615-33473acef839}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="Charater">
+      <UniqueIdentifier>{1a56aa0b-c808-4082-8a4e-7c05ce343262}</UniqueIdentifier>
+=======
     <Filter Include="Effect">
       <UniqueIdentifier>{a0993e07-2b1d-4367-9aa8-644ed411d92f}</UniqueIdentifier>
     </Filter>
@@ -30,6 +34,7 @@
     </Filter>
     <Filter Include="GameManager">
       <UniqueIdentifier>{f2391a71-9c41-457c-9724-c05e477f18af}</UniqueIdentifier>
+>>>>>>> origin/dev
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +47,10 @@
     <ClCompile Include="ItemManager.cpp">
       <Filter>Item</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Character\Player.cpp">
+      <Filter>Charater</Filter>
+=======
     <ClCompile Include="EffectManager.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
@@ -56,6 +65,7 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>GameManager</Filter>
+>>>>>>> origin/dev
     </ClCompile>
     <ClCompile Include="Shop.cpp">
       <Filter>Shop</Filter>
@@ -74,6 +84,13 @@
     <ClInclude Include="ItemManager.h">
       <Filter>Item</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Character\CharacterBase.h">
+      <Filter>Charater</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\Player.h">
+      <Filter>Charater</Filter>
+=======
     <ClInclude Include="EffectDescriptor.h">
       <Filter>Effect</Filter>
     </ClInclude>
@@ -97,6 +114,7 @@
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>GameManager</Filter>
+>>>>>>> origin/dev
     </ClInclude>
     <ClInclude Include="EnemyData.h" />
     <ClInclude Include="Shop.h">

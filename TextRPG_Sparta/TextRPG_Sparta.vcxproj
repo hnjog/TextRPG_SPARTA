@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -138,6 +139,8 @@
     <ClInclude Include="Shop.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character\CharacterBase.h" />
+    <ClInclude Include="Character\Player.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="EffectDescriptor.h" />
     <ClInclude Include="EffectManager.h" />
