@@ -6,8 +6,8 @@ class ItemInstance
 {
 public:
 	ItemInstance();
-	ItemInstance(int idx, std::string& name, std::string& effect, int value, int price, bool isConsumable, bool isStackable, int amount);
-	ItemInstance(ItemData& itemData, int amount);
+	ItemInstance(int idx, const std::string& name, const std::string& effect, int value, int price, bool isConsumable, bool isStackable, int amount);
+	ItemInstance(const ItemData& itemData, int amount);
 
 	bool UseItem(class CharacterBase* target);
 

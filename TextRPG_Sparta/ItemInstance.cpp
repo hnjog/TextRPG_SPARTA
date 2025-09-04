@@ -8,7 +8,7 @@ ItemInstance::ItemInstance()
 {
 }
 
-ItemInstance::ItemInstance(int idx, std::string& name, std::string& effect, int value, int price, bool isConsumable, bool isStackable, int amount)
+ItemInstance::ItemInstance(int idx, const std::string& name, const std::string& effect, int value, int price, bool isConsumable, bool isStackable, int amount)
 {
 	itemData.idx = idx;
 	itemData.name = name;
@@ -24,7 +24,7 @@ ItemInstance::ItemInstance(int idx, std::string& name, std::string& effect, int 
 		stock = 1;
 }
 
-ItemInstance::ItemInstance(ItemData& itemData, int amount)
+ItemInstance::ItemInstance(const ItemData& itemData, int amount)
 	:ItemInstance(itemData.idx,itemData.name,itemData.effect,itemData.value,itemData.price,itemData.isConsumable,itemData.isStackable,amount)
 {
 }
