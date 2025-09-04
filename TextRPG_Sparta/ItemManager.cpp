@@ -44,7 +44,7 @@ void ItemManager::PrintAllItems() const
 
 ItemInstance* ItemManager::MakeItem(int idx, int count)
 {
-	if (count < 0)
+	if (count < 0 || idx < 0)
 		return nullptr;
 
 	auto it = itemMapByIdx.find(idx);
@@ -57,4 +57,16 @@ ItemInstance* ItemManager::MakeItem(int idx, int count)
 		count = 1;
 
 	return new ItemInstance(itemData, count);
+}
+
+const ItemData* ItemManager::GetItemData(int idx)
+{
+	if (idx < 0)
+		return nullptr;
+	
+	auto it = itemMapByIdx.find(idx);
+	if (it == itemMapByIdx.end())
+		return nullptr;
+
+	return &it->second;
 }
