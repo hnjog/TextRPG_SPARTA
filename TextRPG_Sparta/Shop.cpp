@@ -1,4 +1,6 @@
-﻿#include "Shop.h"
+﻿#include <algorithm>
+#include "Shop.h"
+
 
 Shop::Shop(int shopID, string shopName)
 {
@@ -25,6 +27,9 @@ ShopMessage Shop::AddItemRange(vector<int> itemIDList, vector<int> countList)
 		return ShopMessage::INCORRECT_INPUT;
 
 	//countList중 0이하로 입력된 값이 있음
+	if (any_of(countList.begin(), countList.end(), [](int count) { return count <= 0; }))
+		return ShopMessage::INCORRECT_INPUT;
+
 	for (int& count : countList)
 	{
 		if (count <= 0)
