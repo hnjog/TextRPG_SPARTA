@@ -19,6 +19,12 @@
     <Filter Include="Item">
       <UniqueIdentifier>{5ed25951-52fb-4b45-8615-33473acef839}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{a0993e07-2b1d-4367-9aa8-644ed411d92f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect\DetailEffects">
+      <UniqueIdentifier>{3013191d-3a26-4b74-8043-1b43b32c7965}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -28,6 +34,18 @@
       <Filter>Data</Filter>
     </ClCompile>
     <ClCompile Include="ItemManager.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="HealEffect.cpp">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="IncreaseAttackEffect.cpp">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemInstance.cpp">
       <Filter>Item</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,6 +60,24 @@
       <Filter>Item</Filter>
     </ClInclude>
     <ClInclude Include="ItemManager.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectDescriptor.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectRegister.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="HealEffect.h">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="IncreaseAttackEffect.h">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemInstance.h">
       <Filter>Item</Filter>
     </ClInclude>
   </ItemGroup>
