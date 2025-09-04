@@ -6,16 +6,18 @@
 #include "JsonParser.h"
 
 #include "ItemData.h"
+#include "ShopData.h"
 
 class DataManager {
 public:
-    static DataManager& Instance();
+    static DataManager& GetInstance();
 
     // 부팅 시 1회
     bool Initialize();
 
     // 소유권 이전(move-out). 두 번째 호출부터는 빈 벡터가 나감.
     std::vector<ItemData> TakeItems();
+    std::vector<ShopData> TakeShopDatas();
 
 private:
     DataManager() = default;
@@ -30,6 +32,7 @@ private:
 
     // 개별 로더
     void LoadItemsJson(const JsonValue& root);
+    void LoadShopJson(const JsonValue& root);
 
 #ifdef _WIN32
     std::string  ToUtf8(const std::wstring& w) const;
@@ -40,4 +43,5 @@ private:
     bool initialized = false;
 
     std::vector<ItemData> itemDataVector;
+    std::vector<ShopData> shopDataVector;
 };
