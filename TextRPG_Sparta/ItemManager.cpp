@@ -11,7 +11,7 @@ ItemManager& ItemManager::GetInstance()
 
 bool ItemManager::Init()
 {
-	DataManager& DM = DataManager::Instance();
+	DataManager& DM = DataManager::GetInstance();
 	if (DM.Initialize() == false)
 		return false;
 

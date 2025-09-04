@@ -1,4 +1,4 @@
-﻿// DataManager.h
+// DataManager.h
 #pragma once
 #include <string>
 #include <vector>
@@ -9,7 +9,7 @@
 
 class DataManager {
 public:
-    static DataManager& Instance();
+    static DataManager& GetInstance();
 
     // 부팅 시 1회
     bool Initialize();

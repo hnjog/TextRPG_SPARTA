@@ -1,4 +1,4 @@
-﻿#include "DataManager.h"
+#include "DataManager.h"
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -15,7 +15,7 @@
 #include <iostream>
 
 // ---------- Singleton ----------
-DataManager& DataManager::Instance()
+DataManager& DataManager::GetInstance()
 {
 	static DataManager inst;
 	return inst;
