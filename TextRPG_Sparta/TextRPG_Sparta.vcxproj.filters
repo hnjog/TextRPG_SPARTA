@@ -45,6 +45,9 @@
     <ClCompile Include="IncreaseAttackEffect.cpp">
       <Filter>Effect\DetailEffects</Filter>
     </ClCompile>
+    <ClCompile Include="ItemInstance.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataManager.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="IncreaseAttackEffect.h">
       <Filter>Effect\DetailEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemInstance.h">
+      <Filter>Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
