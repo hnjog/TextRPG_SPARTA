@@ -25,6 +25,9 @@
     <Filter Include="Effect\DetailEffects">
       <UniqueIdentifier>{3013191d-3a26-4b74-8043-1b43b32c7965}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameManager">
+      <UniqueIdentifier>{f2391a71-9c41-457c-9724-c05e477f18af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="ItemInstance.cpp">
       <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>GameManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="ItemInstance.h">
       <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>GameManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
