@@ -1,17 +1,23 @@
-#pragma once
+﻿#pragma once
 
-#include <vector>
 #include <string>
+#include <unordered_map>
 
 #include"ItemData.h"
+
+class ItemInstance;
 
 class ItemManager
 {
 public:
-    void Init();
-    bool Init();
+    static ItemManager& GetInstance();
 
-    void PrintAllItems();
+    bool Init();
+    void PrintAllItems() const;
+
+    // 내부에서 아이템을 '생성'한다는 의미에 걸맞도록 수정
+    // 생성된 객체를 반환합니다!
+    ItemInstance* MakeItem(int idx, int count);
 
 private:
     std::unordered_map<int, ItemData> itemMapByIdx;
