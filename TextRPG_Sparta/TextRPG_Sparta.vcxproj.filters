@@ -22,6 +22,9 @@
     <Filter Include="Effect">
       <UniqueIdentifier>{a0993e07-2b1d-4367-9aa8-644ed411d92f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Effect\DetailEffects">
+      <UniqueIdentifier>{3013191d-3a26-4b74-8043-1b43b32c7965}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -35,6 +38,12 @@
     </ClCompile>
     <ClCompile Include="EffectManager.cpp">
       <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="HealEffect.cpp">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="IncreaseAttackEffect.cpp">
+      <Filter>Effect\DetailEffects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="HealEffect.h">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="IncreaseAttackEffect.h">
+      <Filter>Effect\DetailEffects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
