@@ -6,7 +6,7 @@ EffectManager& EffectManager::GetInstance()
 	return inst;
 }
 
-void EffectManager::Register(std::string&& id, EffectFactory& ef)
+void EffectManager::Register(std::string&& id, EffectFactory&& ef)
 {
 	// id는 Effect 내부에서 저장할 거 아니니 Move로 뺏어 사용
 	// ef는 람다 함수이기에 빼다 사용
