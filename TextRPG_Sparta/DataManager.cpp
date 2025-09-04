@@ -147,6 +147,18 @@ bool DataManager::Initialize()
 		std::cout << "Shop.json do not exist!" << '\n';
 	}
 
+	try
+	{
+		std::string path = ResolveFromResourcesOutput("Enemy.json");
+		JsonValue root = ParseJsonFile(path);
+		LoadEnemyJson(root);
+	}
+	catch (...)
+	{
+		std::cout << "Enemy.json do not exist!" << '\n';
+	}
+
+
 	initialized = true;
 
 	return initialized;
@@ -282,6 +294,116 @@ void DataManager::LoadShopJson(const JsonValue& root)
 	}
 }
 
+void DataManager::LoadEnemyJson(const JsonValue& root)
+{
+	enemyDataVector.clear();
+
+	// 우리가 쓰는 스키마: 최상위가 배열
+	if (root.type != JsonValue::Type::Array)
+		return;
+
+	enemyDataVector.reserve(root.arr.size());
+	for (const auto& obj : root.arr) {
+		if (obj.type != JsonValue::Type::Object)
+			continue;
+
+		EnemyData ed;
+
+		const JsonValue* eIdx = obj.get("Idx");
+		if (eIdx)
+		{
+			if (eIdx->type == JsonValue::Type::String)
+				ed.idx = static_cast<int>(std::strtol(eIdx->str.c_str(), nullptr, 10));
+			else if (eIdx->type == JsonValue::Type::Number)
+				ed.idx = static_cast<int>(eIdx->number);
+		}
+
+		const JsonValue* eName = obj.get("Name");
+		if (eName && eName->type == JsonValue::Type::String)
+			ed.name = (eName->str);
+
+		const JsonValue* eBaseHp = obj.get("BaseHp");
+		if (eBaseHp)
+		{
+			if (eBaseHp->type == JsonValue::Type::String)
+				ed.baseHp = static_cast<int>(std::strtol(eBaseHp->str.c_str(), nullptr, 10));
+			else if (eBaseHp->type == JsonValue::Type::Number)
+				ed.baseHp = static_cast<int>(eBaseHp->number);
+		}
+
+		const JsonValue* eBaseAttack = obj.get("BaseAttack");
+		if (eBaseAttack)
+		{
+			if (eBaseAttack->type == JsonValue::Type::String)
+				ed.baseAttack = static_cast<int>(std::strtol(eBaseAttack->str.c_str(), nullptr, 10));
+			else if (eBaseAttack->type == JsonValue::Type::Number)
+				ed.baseAttack = static_cast<int>(eBaseAttack->number);
+		}
+
+		const JsonValue* eHpPerLevel = obj.get("HpPerLevel");
+		if (eHpPerLevel)
+		{
+			if (eHpPerLevel->type == JsonValue::Type::String)
+				ed.hpPerLevel = static_cast<int>(std::strtol(eHpPerLevel->str.c_str(), nullptr, 10));
+			else if (eHpPerLevel->type == JsonValue::Type::Number)
+				ed.hpPerLevel = static_cast<int>(eHpPerLevel->number);
+		}
+
+		const JsonValue* eAttackPerLevel = obj.get("AttackPerLevel");
+		if (eAttackPerLevel)
+		{
+			if (eAttackPerLevel->type == JsonValue::Type::String)
+				ed.attackPerLevel = static_cast<int>(std::strtol(eAttackPerLevel->str.c_str(), nullptr, 10));
+			else if (eAttackPerLevel->type == JsonValue::Type::Number)
+				ed.attackPerLevel = static_cast<int>(eAttackPerLevel->number);
+		}
+
+		const JsonValue* eDropGold = obj.get("DropGold");
+		if (eDropGold)
+		{
+			if (eDropGold->type == JsonValue::Type::String)
+				ed.dropGold = static_cast<int>(std::strtol(eDropGold->str.c_str(), nullptr, 10));
+			else if (eDropGold->type == JsonValue::Type::Number)
+				ed.dropGold = static_cast<int>(eDropGold->number);
+		}
+
+		const JsonValue* eDropExp = obj.get("DropExp");
+		if (eDropExp)
+		{
+			if (eDropExp->type == JsonValue::Type::String)
+				ed.dropExp = static_cast<int>(std::strtol(eDropExp->str.c_str(), nullptr, 10));
+			else if (eDropExp->type == JsonValue::Type::Number)
+				ed.dropExp = static_cast<int>(eDropExp->number);
+		}
+
+		const JsonValue* eDropItemIdx = obj.get("DropItemIdx");
+		if (eDropItemIdx && eDropItemIdx->type == JsonValue::Type::Array)
+		{
+			for (const auto& v : eDropItemIdx->arr)
+			{
+				if (v.type == JsonValue::Type::Number)
+				{
+					ed.dropItemIdxVector.push_back(static_cast<int>(v.number));
+				}
+			}
+		}
+
+		const JsonValue* eDropItemChance = obj.get("DropItemChance");
+		if (eDropItemChance && eDropItemChance->type == JsonValue::Type::Array)
+		{
+			for (const auto& v : eDropItemChance->arr)
+			{
+				if (v.type == JsonValue::Type::Number)
+				{
+					ed.dropItemChanceVector.push_back(static_cast<int>(v.number));
+				}
+			}
+		}
+
+		enemyDataVector.push_back(ed);
+	}
+}
+
 // ---------- Move-out ----------
 std::vector<ItemData> DataManager::TakeItems()
 {
@@ -291,4 +413,9 @@ std::vector<ItemData> DataManager::TakeItems()
 std::vector<ShopData> DataManager::TakeShopDatas()
 {
 	return std::move(shopDataVector);
+}
+
+std::vector<EnemyData> DataManager::TakeEnemyDatas()
+{
+	return std::move(enemyDataVector);
 }
