@@ -1,4 +1,5 @@
 ﻿#include "HealEffect.h"
+#include"Character/CharacterBase.h"
 
 std::string HealEffect::GetId()
 {

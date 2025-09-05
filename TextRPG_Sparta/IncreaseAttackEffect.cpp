@@ -1,4 +1,5 @@
 ﻿#include "IncreaseAttackEffect.h"
+#include"Character/CharacterBase.h"
 
 std::string IncreaseAttackEffect::GetId()
 {
