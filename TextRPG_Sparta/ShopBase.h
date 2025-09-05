@@ -53,8 +53,7 @@ public:
 	//* NO_SELLING_ITEM : 판매중인 아이템이 아님
 	//* INCORRECT_INPUT : 구매하려는 개수가 0 이하
 	//* NOT_ENOUGH_STOCK : 구매하려는 개수가 재고보다 많음
-	//* OTHER_ERROR : 매개변수 price가 null
-	ShopMessage CheckPrice(_Out_ int* price, int itemID, int count = 1);
+	ShopMessage CheckPrice(int& price, int itemID, int count = 1);
 
 	//아이템 판매
 	//상점 입장에서 판매이므로 캐릭터 입장에서는 구매
