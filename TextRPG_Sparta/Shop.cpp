@@ -41,6 +41,8 @@ ShopMessage Shop::AddItemRange(vector<int> itemIDList, vector<int> countList)
 	{
 		sellList[itemIDList[iNum]] += countList[iNum];
 	}
+
+	return ShopMessage::OK;
 }
 
 ShopMessage Shop::RemoveItem(int itemID, int count)
