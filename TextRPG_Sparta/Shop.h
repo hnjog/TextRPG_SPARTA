@@ -44,4 +44,12 @@ public:
 	//* INCORRECT_INPUT : 제거할 개수가 0 이하
 	//* NOT_ENOUGH_STOCK : 제거할 개수가 재고보다 많음
 	ShopMessage RemoveItem(int itemID, int count = 1);
+
+	//지정한 아이템과 개수가 얼마인지 확인
+	//성공적으로 처리시 price변수에 값이 저장된다. 에러 발생시 0이 저장된다.
+	//* INCORRECT_ITEM : 판매중인 아이템이 아님
+	//* INCORRECT_INPUT : 구매하려는 개수가 0 이하
+	//* NOT_ENOUGH_STOCK : 구매하려는 개수가 재고보다 많음
+	//* OTHER_ERROR : 매개변수 price가 null
+	ShopMessage CheckPrice(_Out_ int* price, int itemID, int count = 1);
 };
