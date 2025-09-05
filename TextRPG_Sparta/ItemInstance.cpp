@@ -1,6 +1,7 @@
 ﻿#include "ItemInstance.h"
 #include "EffectManager.h"
 #include "EffectDescriptor.h"
+#include"Character/CharacterBase.h"
 #include<memory>
 
 ItemInstance::ItemInstance()
@@ -18,7 +19,7 @@ ItemInstance::ItemInstance(int idx, const std::string& name, const std::string& 
 	itemData.isConsumable = isConsumable;
 	itemData.isStackable = isStackable;
 
-	if (itemData.isStackable)
+	if (true == itemData.isStackable)
 		stock = amount;
 	else
 		stock = 1;
@@ -31,7 +32,7 @@ ItemInstance::ItemInstance(const ItemData& itemData, int amount)
 
 bool ItemInstance::UseItem(CharacterBase* target)
 {
-	if (target == nullptr)
+	if (nullptr == target)
 		return false;
 
 	if (true == itemData.isConsumable&&
@@ -47,10 +48,10 @@ bool ItemInstance::UseItem(CharacterBase* target)
 
 	std::unique_ptr<IEffect> effect = effectManager.Create(itemData.effect);
 	// 없는 effect
-	if (effect == nullptr)
+	if (nullptr == effect)
 		return false;
 
-	if (effect->Apply(context))
+	if (true == effect->Apply(context))
 	{
 		if (true == itemData.isConsumable)
 		{
