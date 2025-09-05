@@ -110,10 +110,8 @@ ShopMessage Shop::CheckPrice(_Out_ int* price, int itemID, int count)
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::SellItem(_Out_ ItemData* sellItem, int itemID, int count)
+ShopMessage Shop::SellItem(ItemData& sellItem, int itemID, int count)
 {
-	sellItem = nullptr;
-
 	//올바른 아이템 번호가 아님
 	const ItemData* itemData = ItemManager::GetInstance().GetItemData(itemID);
 	if (itemData == nullptr)
@@ -133,7 +131,7 @@ ShopMessage Shop::SellItem(_Out_ ItemData* sellItem, int itemID, int count)
 
 	//판매 처리
 	sellList[itemID] -= count;
-	sellItem = nullptr;//TODO : 올바른 아이템 데이터를 반환해야함
+	sellItem = *itemData;
 
 	return ShopMessage::OK;
 }

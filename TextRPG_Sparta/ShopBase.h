@@ -58,10 +58,10 @@ public:
 
 	//아이템 판매
 	//상점 입장에서 판매이므로 캐릭터 입장에서는 구매
-	//성공적으로 처리시 판매할 아이템이 sellItem에 담기며 실패시 nullptr이 대신 반환됨
+	//성공적으로 처리시 판매할 아이템이 sellItem에 담기며 실패시 변화 없음
 	//* INCORRECT_ITEM : 올바른 아이템 번호가 아님
 	//* NO_SELLING_ITEM : 판매중인 아이템이 아님
 	//* INCORRECT_INPUT : 구매하려는 개수가 0 이하
 	//* NOT_ENOUGH_STOCK : 구매하려는 개수가 재고보다 많음
-	ShopMessage SellItem(_Out_ ItemData* sellItem, int itemID, int count = 1);
+	ShopMessage SellItem(ItemData& sellItem, int itemID, int count = 1);
 };
