@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class ItemData;
+struct ItemData;
 
 //상점 기능 이용시 처리 결과
 enum class ShopMessage
