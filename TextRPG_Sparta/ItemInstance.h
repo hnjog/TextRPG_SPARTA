@@ -10,6 +10,7 @@ public:
 	ItemInstance(const ItemData& itemData, int amount);
 
 	bool UseItem(class CharacterBase* target);
+	bool AddItemStock(int count);
 
 public:
 	inline int GetItemIdx() const { return itemData.idx; }

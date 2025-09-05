@@ -62,3 +62,19 @@ bool ItemInstance::UseItem(CharacterBase* target)
 
 	return false;
 }
+
+bool ItemInstance::AddItemStock(int count)
+{
+	if (count <= 0)
+		return false;
+
+	// 여러 개 들고 다닐 수 없는데 이미 1개 들고 있다
+	if (false == itemData.isStackable &&
+		stock >= 1)
+	{
+		return false;
+	}
+
+	stock += count;
+	return true;
+}
