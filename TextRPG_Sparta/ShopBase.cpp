@@ -80,13 +80,9 @@ ShopMessage Shop::RemoveItem(int itemID, int count)
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::CheckPrice(_Out_ int* price, int itemID, int count)
+ShopMessage Shop::CheckPrice(int& price, int itemID, int count)
 {
-	//price는 null이면 안됨
-	if (price == nullptr)
-		return ShopMessage::OTHER_ERROR;
-
-	*price = 0;
+	price = 0;
 
 	//올바른 아이템 번호가 아님
 	const ItemData* itemData = ItemManager::GetInstance().GetItemData(itemID);
@@ -106,14 +102,12 @@ ShopMessage Shop::CheckPrice(_Out_ int* price, int itemID, int count)
 		return ShopMessage::NOT_ENOUGH_STOCK;
 
 	//가격 계산
-	*price = itemData->price * count;
+	price = itemData->price * count;
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::SellItem(_Out_ ItemData* sellItem, int itemID, int count)
+ShopMessage Shop::SellItem(ItemData& sellItem, int itemID, int count)
 {
-	sellItem = nullptr;
-
 	//올바른 아이템 번호가 아님
 	const ItemData* itemData = ItemManager::GetInstance().GetItemData(itemID);
 	if (itemData == nullptr)
@@ -133,7 +127,7 @@ ShopMessage Shop::SellItem(_Out_ ItemData* sellItem, int itemID, int count)
 
 	//판매 처리
 	sellList[itemID] -= count;
-	sellItem = nullptr;//TODO : 올바른 아이템 데이터를 반환해야함
+	sellItem = *itemData;
 
 	return ShopMessage::OK;
 }
