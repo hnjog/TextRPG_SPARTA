@@ -4,8 +4,7 @@
 #include<memory>
 #include<string>
 
-// 나중에 이거 대신 include
-class CharacterBase;
+#include"Character/CharacterBase.h"
 
 struct EffectContext
 {
