@@ -1,5 +1,5 @@
 ﻿#include "HealEffect.h"
-#include"Character/CharacterBase.h"
+#include "Character/CharacterBase.h"
 
 std::string HealEffect::GetId()
 {
@@ -8,9 +8,17 @@ std::string HealEffect::GetId()
 
 bool HealEffect::Apply(EffectContext& effectContext)
 {
-	// 체력 회복 코드
-	// CharacterBase* Target = effectContext.target;
-	// Target->Heal(effectContext.value);
+	CharacterBase* target = effectContext.target;
+	if (nullptr == target)
+		return false;
+
+	if (effectContext.value < 0)
+		return false;
+
+	int targetMaxHp = target->GetMaxHp();
+	int targetCurrentHp = target->GetCurrentHp();
+	int targetResultHp = min(targetCurrentHp + effectContext.value, targetMaxHp);
+	target->SetCurrentHp(targetResultHp);
 
 	return true;
 }
