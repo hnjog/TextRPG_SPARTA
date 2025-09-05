@@ -26,14 +26,21 @@ public:
 	//상점 생성 (상점 번호와 이름 필요)
 	Shop(int shopID = 0, string shopName = "");
 
+	//판매중인 아이템을 출력한다.
+	//* OTHER_ERROR : 판매중인 아이템이 없음
+	ShopMessage PrintSellingItems();
+
 	//아이템 1종류를 지정한 개수만큼 추가
+	//* INCORRECT_INPUT : 추가할 개수가 0 이하
 	ShopMessage AddItem(int itemID, int count = 1);
 
 	//아이템 여러 종류 각각 지정한 개수만큼 추가
-	//* itemIDList와 countList의 size는 동일해야 합니다.
+	//* INCORRECT_INPUT : itemIDList와 countList의 size가 0이거나 불일치 또는 추가할 개수가 0 이하인 값이 있음
 	ShopMessage AddItemRange(vector<int> itemIDList, vector<int> countList);
 
 	//아이템 1종류를 지정한 개수만큼 제거
-	//제거 실패시 false
+	//* INCORRECT_ITEM : 판매중인 아이템이 아님
+	//* INCORRECT_INPUT : 제거할 개수가 0 이하
+	//* NOT_ENOUGH_STOCK : 제거할 개수가 재고보다 많음
 	ShopMessage RemoveItem(int itemID, int count = 1);
 };

@@ -1,4 +1,5 @@
 ﻿#include <algorithm>
+#include <iostream>
 #include "Shop.h"
 
 
@@ -6,6 +7,21 @@ Shop::Shop(int shopID, string shopName)
 {
 	id = shopID;
 	name = shopName;
+}
+
+ShopMessage Shop::PrintSellingItems()
+{
+	if (sellList.empty())
+		return ShopMessage::OTHER_ERROR;
+
+	cout << "========================================" << endl;
+	cout << "* 판매 아이템 목록" << endl;
+	for (auto& sellInfo : sellList)
+		cout << sellInfo.first << " : " << sellInfo.second << endl;
+	
+	cout << "========================================" << endl;
+
+	return ShopMessage::OK;
 }
 
 ShopMessage Shop::AddItem(int itemID, int count)
