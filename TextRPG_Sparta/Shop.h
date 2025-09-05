@@ -5,6 +5,16 @@
 
 using namespace std;
 
+//상점 기능 이용시 처리 결과
+enum class ShopMessage
+{
+	OK,//문제 없음
+	INCORRECT_ITEM,//아이템 ID가 올바르지 않음
+	INCORRECT_INPUT,//아이템 ID외 입력이 올바르지 않음
+	NOT_ENOUGH_STOCK,//재고 부족
+	OTHER_ERROR,//기타 다른 오류
+};
+
 class Shop
 {
 private:
@@ -16,14 +26,21 @@ public:
 	//상점 생성 (상점 번호와 이름 필요)
 	Shop(int shopID = 0, string shopName = "");
 
+	//판매중인 아이템을 출력한다.
+	//* OTHER_ERROR : 판매중인 아이템이 없음
+	ShopMessage PrintSellingItems();
+
 	//아이템 1종류를 지정한 개수만큼 추가
-	void AddItem(int itemID, int count = 1);
+	//* INCORRECT_INPUT : 추가할 개수가 0 이하
+	ShopMessage AddItem(int itemID, int count = 1);
 
 	//아이템 여러 종류 각각 지정한 개수만큼 추가
-	//* itemIDList와 countList의 size는 동일해야 합니다.
-	void AddItemRange(vector<int> itemIDList, vector<int> countList);
+	//* INCORRECT_INPUT : itemIDList와 countList의 size가 0이거나 불일치 또는 추가할 개수가 0 이하인 값이 있음
+	ShopMessage AddItemRange(vector<int> itemIDList, vector<int> countList);
 
 	//아이템 1종류를 지정한 개수만큼 제거
-	//제거 실패시 false
-	bool RemoveItem(int itemID, int count = 1);
+	//* INCORRECT_ITEM : 판매중인 아이템이 아님
+	//* INCORRECT_INPUT : 제거할 개수가 0 이하
+	//* NOT_ENOUGH_STOCK : 제거할 개수가 재고보다 많음
+	ShopMessage RemoveItem(int itemID, int count = 1);
 };
