@@ -1,6 +1,6 @@
 ﻿#include <algorithm>
 #include <iostream>
-#include "Shop.h"
+#include "ShopBase.h"
 #include "ItemManager.h"
 
 Shop::Shop(int shopID, string shopName)
