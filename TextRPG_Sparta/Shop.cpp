@@ -110,7 +110,7 @@ ShopMessage Shop::CheckPrice(_Out_ int* price, int itemID, int count)
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::SellItem(_Out_ ItemData* sellItem, int itemID, int count = 1)
+ShopMessage Shop::SellItem(_Out_ ItemData* sellItem, int itemID, int count)
 {
 	sellItem = nullptr;
 
