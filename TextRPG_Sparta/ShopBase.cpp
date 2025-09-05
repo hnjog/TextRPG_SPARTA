@@ -86,7 +86,7 @@ ShopMessage Shop::CheckPrice(_Out_ int* price, int itemID, int count)
 	if (price == nullptr)
 		return ShopMessage::OTHER_ERROR;
 
-	price = 0;
+	*price = 0;
 
 	//올바른 아이템 번호가 아님
 	const ItemData* itemData = ItemManager::GetInstance().GetItemData(itemID);
