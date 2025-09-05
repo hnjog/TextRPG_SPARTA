@@ -11,6 +11,7 @@ enum class ShopMessage
 	OK,//문제 없음
 	INCORRECT_ITEM,//아이템 ID가 올바르지 않음
 	INCORRECT_INPUT,//아이템 ID외 입력이 올바르지 않음
+	NO_SELLING_ITEM,//판매중인 아이템이 아님
 	NOT_ENOUGH_STOCK,//재고 부족
 	OTHER_ERROR,//기타 다른 오류
 };

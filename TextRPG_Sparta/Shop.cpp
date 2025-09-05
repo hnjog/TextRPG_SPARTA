@@ -65,7 +65,7 @@ ShopMessage Shop::RemoveItem(int itemID, int count)
 {
 	//판매중인 아이템이 아님
 	if (sellList.find(itemID) == sellList.end())
-		return ShopMessage::INCORRECT_ITEM;
+		return ShopMessage::NO_SELLING_ITEM;
 
 	//1개 이상 제거 필요
 	if (count <= 0)
