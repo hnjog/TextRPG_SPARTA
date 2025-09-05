@@ -136,6 +136,7 @@
     <ClCompile Include="Shop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Shop.h" />
   </ItemGroup>
   <ItemGroup>
