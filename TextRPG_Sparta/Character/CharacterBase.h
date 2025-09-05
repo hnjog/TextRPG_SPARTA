@@ -19,6 +19,7 @@ public:
 
 	virtual void DisplayStat() {};
 	virtual void TakeDamage(int damage) {};
+	virtual void Attack(CharacterBase* target) {};
 	virtual bool IsDead() { return m_baseStat.currentHp <= 0; }
 	//Setter
 	void SetCurrentHp(int hp) { m_baseStat.currentHp = hp; };
@@ -28,5 +29,6 @@ public:
 	int GetCurrentHp() const { return m_baseStat.currentHp; }
 	int GetMaxHp() const { return m_baseStat.maxHp; }
 	int GetAttack() const { return m_baseStat.attack; }
+	string GetName() const { return m_name; }
 };
 
