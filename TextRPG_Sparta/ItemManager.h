@@ -20,6 +20,8 @@ public:
     ItemInstance* MakeItem(int idx, int count);
     const ItemData* GetItemData(int idx);
 
+    int GetItemTypeCount();
+
 private:
     std::unordered_map<int, ItemData> itemMapByIdx;
 };

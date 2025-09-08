@@ -21,5 +21,6 @@ int main()
 
     ItemManager::GetInstance().Init();
 
+    GameManager::Instance().InitGame();
     GameManager::Instance().StartGame();
 }

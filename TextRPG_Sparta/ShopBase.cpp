@@ -19,8 +19,13 @@ void ShopBase::PrintSellingItems()
 
 	cout << "========================================" << endl;
 	cout << "* 판매 아이템 목록" << endl;
-	for (auto& sellInfo : sellList)
-		cout << sellInfo.first << " : " << sellInfo.second << endl;
+	for (auto& sellInfo : sellList) {
+		auto itemData = ItemManager::GetInstance().GetItemData(sellInfo.first);
+		
+		cout << sellInfo.first << ". " << itemData->name << " : " << sellInfo.second << '\n';
+		//cout << sellInfo.first << " : " << sellInfo.second << endl;
+	}
+		
 	
 	cout << "========================================" << endl;
 }
@@ -163,7 +168,7 @@ SellItemData ShopBase::SellItem(int itemID, int count)
 
 	//판매 처리
 	sellList[itemID] -= count;
-	SellItemData sellItemData;
+	//SellItemData sellItemData;
 	sellItemData.idx = itemData->idx;
 	sellItemData.price = itemData->price;
 	sellItemData.stocks = count;

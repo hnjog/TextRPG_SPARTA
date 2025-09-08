@@ -1,3 +1,5 @@
+#include "ShopBase.h"
+
 class GameManager
 {
 public:
@@ -11,8 +13,10 @@ private:
 private:
     //캐릭터 Character
     //몬스터 vector<T>
-
+    class Player* player;
+    
 public:
+    void InitGame();
     void StartGame();
 
 private:
