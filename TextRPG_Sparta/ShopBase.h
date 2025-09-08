@@ -18,6 +18,14 @@ struct ItemData;
 //	OTHER_ERROR,//기타 다른 오류
 //};
 
+struct SellItemData
+{
+	SellItemData() {}
+	int idx = 0;
+	int price = 0;
+	int stocks = 0;
+};
+
 class ShopBase
 {
 private:
@@ -61,11 +69,11 @@ public:
 
 	//아이템 판매 (구현중)
 	//상점 입장에서 판매이므로 캐릭터 입장에서는 구매
-	//성공적으로 처리시 판매할 아이템이 sellItem에 담기며 실패시 null 반환
+	//성공적으로 처리시 판매할 아이템이 sellItem에 담기며 실패시 내용이 모두 0인 데이터가 반환
 	//=== null 반환 사유 ===
 	//* 올바른 아이템 번호가 아님
 	//* 판매중인 아이템이 아님
 	//* 구매하려는 개수가 0 이하
 	//* 구매하려는 개수가 재고보다 많음
-	ItemData* SellItem(int itemID, int count = 1);
+	SellItemData SellItem(int itemID, int count = 1);
 };
