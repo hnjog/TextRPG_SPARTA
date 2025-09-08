@@ -3,13 +3,13 @@
 #include "ShopBase.h"
 #include "ItemManager.h"
 
-Shop::Shop(int shopID, string shopName)
+ShopBase::ShopBase(int shopID, string shopName)
 {
 	id = shopID;
 	name = shopName;
 }
 
-ShopMessage Shop::PrintSellingItems()
+ShopMessage ShopBase::PrintSellingItems()
 {
 	if (sellList.empty())
 		return ShopMessage::OTHER_ERROR;
@@ -24,7 +24,7 @@ ShopMessage Shop::PrintSellingItems()
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::AddItem(int itemID, int count)
+ShopMessage ShopBase::AddItem(int itemID, int count)
 {
 	if (count <= 0)//1개 이상 추가 필요
 		return ShopMessage::INCORRECT_INPUT;
@@ -34,7 +34,7 @@ ShopMessage Shop::AddItem(int itemID, int count)
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::AddItemRange(vector<int> itemIDList, vector<int> countList)
+ShopMessage ShopBase::AddItemRange(vector<int> itemIDList, vector<int> countList)
 {
 	int length = itemIDList.size();
 
@@ -61,7 +61,7 @@ ShopMessage Shop::AddItemRange(vector<int> itemIDList, vector<int> countList)
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::RemoveItem(int itemID, int count)
+ShopMessage ShopBase::RemoveItem(int itemID, int count)
 {
 	//판매중인 아이템이 아님
 	if (sellList.find(itemID) == sellList.end())
@@ -80,7 +80,7 @@ ShopMessage Shop::RemoveItem(int itemID, int count)
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::CheckPrice(int& price, int itemID, int count)
+ShopMessage ShopBase::CheckPrice(int& price, int itemID, int count)
 {
 	price = 0;
 
@@ -106,7 +106,7 @@ ShopMessage Shop::CheckPrice(int& price, int itemID, int count)
 	return ShopMessage::OK;
 }
 
-ShopMessage Shop::SellItem(ItemData& sellItem, int itemID, int count)
+ShopMessage ShopBase::SellItem(ItemData& sellItem, int itemID, int count)
 {
 	//올바른 아이템 번호가 아님
 	const ItemData* itemData = ItemManager::GetInstance().GetItemData(itemID);

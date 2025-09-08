@@ -18,7 +18,7 @@ enum class ShopMessage
 	OTHER_ERROR,//기타 다른 오류
 };
 
-class Shop
+class ShopBase
 {
 private:
 	int id;//상점 번호
@@ -27,7 +27,7 @@ private:
 
 public:
 	//상점 생성 (상점 번호와 이름 필요)
-	Shop(int shopID = 0, string shopName = "");
+	ShopBase(int shopID = 0, string shopName = "");
 
 	//판매중인 아이템을 출력한다.
 	//* OTHER_ERROR : 판매중인 아이템이 없음
