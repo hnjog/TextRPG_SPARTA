@@ -31,8 +31,18 @@ void Player::GetItem(ItemInstance* item)
 		auto it = find_if(m_inventory.begin(),m_inventory.end(), [item](const ItemInstance* invItem) {
 			return invItem->GetItemIdx() == item->GetItemIdx();
 			});
+
 		if (it != m_inventory.end()) {
 			(*it)->AddItemStock(item->GetItemStock());
+		} 
+		else {
+			// 이터레이터 못찾으면 일단 삽입
+			m_inventory.push_back(item);
+
+			// 소팅할까요?
+			/*sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
+				return A->GetItemName() < B->GetItemName();
+				});*/
 		}
 	}	
 	else {

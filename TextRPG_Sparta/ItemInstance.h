@@ -20,7 +20,7 @@ public:
 	inline int GetItemPrice() const { return itemData.price; }
 	inline bool isConsumableItem() const { return itemData.isConsumable; }
 	inline bool isStackableItem() const { return itemData.isStackable; }
-	inline bool GetItemStock() const { return stock; }
+	inline int GetItemStock() const { return stock; }
 
 protected:
 	ItemData itemData;

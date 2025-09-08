@@ -22,7 +22,7 @@ void ShopBase::PrintSellingItems()
 	for (auto& sellInfo : sellList) {
 		auto itemData = ItemManager::GetInstance().GetItemData(sellInfo.first);
 		
-		cout << sellInfo.first << ". " << itemData->name << " : " << sellInfo.second << '\n';
+		cout << sellInfo.first << ". " << itemData->name << " : " << itemData->price << "G(" << sellInfo.second << "개 구매가능)\n";
 		//cout << sellInfo.first << " : " << sellInfo.second << endl;
 	}
 		

@@ -4,6 +4,7 @@
 #include "ItemManager.h"
 
 #include "Character/Player.h"
+#include "ItemInstance.h"
 
 ShopManager& ShopManager::Instance()
 {
@@ -33,12 +34,14 @@ void ShopManager::VisitShop(Player* player)
 	this->shop.PrintSellingItems();
 
 	int opt, cnt;
-	cout << "구매할 아이템 번호를 입력하세요: ";
+	cout << "구매할 아이템 번호를 입력하세요(나가기 -1): ";
 	cin >> opt;
+	if (opt == -1) return;
+
 	cout << "구매할 아이템 개수를 입력하세요: ";
 	cin >> cnt;
 
-	// 구매하고자 하는 아이템 금액 계산
+	// Check total price
 	auto price = this->shop.CheckPrice(opt, cnt);
 	
 	if (price == 0) {
@@ -46,7 +49,7 @@ void ShopManager::VisitShop(Player* player)
 		return;
 	}
 
-	// 플레이어 돈 보유량 확인
+	// Check player gold
 	if (player->getGold() < price)
 	{
 		cout << "보유한 골드가 부족하여 아이템을 구매할 수 없습니다.\n";
@@ -54,12 +57,15 @@ void ShopManager::VisitShop(Player* player)
 	}
 
 	auto receipt = shop.SellItem(opt, cnt);
+	
 
 #if DEV
 	auto itemData = ItemManager::GetInstance().GetItemData(receipt.idx);
-	cout << itemData->name << "을(를) " << cnt << "개 구매하였습니다.\n";
+	cout << itemData->name << "를(을) " << cnt << "개 구매하였습니다.\n";
 #endif
 
+	// Add item && Use Gold
 	auto item = ItemManager::GetInstance().MakeItem(opt, cnt);
 	player->GetItem(item);
+	player->useGold(price);
 }

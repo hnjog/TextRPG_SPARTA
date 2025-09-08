@@ -21,7 +21,7 @@ public:
 
 private:
     void Battle();
-    void ShowInventory();
     void UseShop();
+    //void ShowInventory();
 };
 
