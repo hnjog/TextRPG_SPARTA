@@ -34,6 +34,9 @@
     <Filter Include="GameManager">
       <UniqueIdentifier>{f2391a71-9c41-457c-9724-c05e477f18af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{25f5a0f6-57e0-49f0-aa1e-9669d4bde847}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -65,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="ShopBase.cpp">
       <Filter>Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +119,9 @@
     <ClInclude Include="EnemyData.h" />
     <ClInclude Include="ShopBase.h">
       <Filter>Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
