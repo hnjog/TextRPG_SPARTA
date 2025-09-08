@@ -23,7 +23,7 @@ struct ItemData
 	{
 	}
 
-	ItemData(int idx, std::string& name, std::string& effect, int value, bool isConsume, bool isStackable)
+	ItemData(int idx, std::string& name, std::string& effect, int value,int price, bool isConsumable, bool isStackable)
 		:idx(idx),
 		name(name),
 		effect(effect),

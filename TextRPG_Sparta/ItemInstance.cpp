@@ -1,6 +1,7 @@
 ﻿#include "ItemInstance.h"
 #include "EffectManager.h"
 #include "EffectDescriptor.h"
+#include"Character/CharacterBase.h"
 #include<memory>
 
 ItemInstance::ItemInstance()
@@ -18,7 +19,7 @@ ItemInstance::ItemInstance(int idx, const std::string& name, const std::string& 
 	itemData.isConsumable = isConsumable;
 	itemData.isStackable = isStackable;
 
-	if (itemData.isStackable)
+	if (true == itemData.isStackable)
 		stock = amount;
 	else
 		stock = 1;
@@ -31,7 +32,7 @@ ItemInstance::ItemInstance(const ItemData& itemData, int amount)
 
 bool ItemInstance::UseItem(CharacterBase* target)
 {
-	if (target == nullptr)
+	if (nullptr == target)
 		return false;
 
 	if (true == itemData.isConsumable&&
@@ -47,10 +48,10 @@ bool ItemInstance::UseItem(CharacterBase* target)
 
 	std::unique_ptr<IEffect> effect = effectManager.Create(itemData.effect);
 	// 없는 effect
-	if (effect == nullptr)
+	if (nullptr == effect)
 		return false;
 
-	if (effect->Apply(context))
+	if (true == effect->Apply(context))
 	{
 		if (true == itemData.isConsumable)
 		{
@@ -61,4 +62,20 @@ bool ItemInstance::UseItem(CharacterBase* target)
 	}
 
 	return false;
+}
+
+bool ItemInstance::AddItemStock(int count)
+{
+	if (count <= 0)
+		return false;
+
+	// 여러 개 들고 다닐 수 없는데 이미 1개 들고 있다
+	if (false == itemData.isStackable &&
+		stock >= 1)
+	{
+		return false;
+	}
+
+	stock += count;
+	return true;
 }
