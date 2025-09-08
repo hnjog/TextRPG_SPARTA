@@ -68,7 +68,7 @@ bool ShopBase::AddItemRange(vector<int> itemIDList, vector<int> countList)
 bool ShopBase::RemoveItem(int itemID, int count)
 {
 	//판매중인 아이템이 아님
-	if (sellList.find(itemID) == sellList.end())
+	if (sellList.find(itemID) == sellList.end() || sellList[itemID] == 0)
 	{
 		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
 		return false;
@@ -104,7 +104,7 @@ int ShopBase::CheckPrice(int itemID, int count)
 	}
 
 	//판매중인 아이템이 아님
-	if (sellList.find(itemID) == sellList.end())
+	if (sellList.find(itemID) == sellList.end() || sellList[itemID] == 0)
 	{
 		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
 		return 0;
@@ -141,7 +141,7 @@ SellItemData ShopBase::SellItem(int itemID, int count)
 	}
 
 	//판매중인 아이템이 아님
-	if (sellList.find(itemID) == sellList.end())
+	if (sellList.find(itemID) == sellList.end() || sellList[itemID] == 0)
 	{
 		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
 		return sellItemData;
