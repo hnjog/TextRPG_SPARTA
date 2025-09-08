@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <algorithm>
 
+// 확률 함수
 int Enemy::RandRange(int l, int r) {
     static thread_local std::mt19937 rng{
         (uint32_t)std::chrono::steady_clock::now().time_since_epoch().count()
@@ -16,6 +17,7 @@ bool Enemy::Chance(int percent) {
     return RandRange(1, 100) <= percent;
 }
 
+//초기화
 void Enemy::InitializeFromData()
 {
     int hp = GetHpAtLevel(level);
@@ -26,14 +28,15 @@ void Enemy::InitializeFromData()
     SetAttack(atk);
 }
 
+//  ===== 전투 =====
 void Enemy::Attack(CharacterBase& target)
 {
     if (IsDead()) return;
 
-    target.TakeDamage(GetAttack(););
+    target.TakeDamage(GetAttack());
 
     std::cout << "[몬스터] " << enemyData.name
-        << " 공격! (" << dmg
+        << " 공격! (" << GetAttack()
         << ") -> 플레이어 HP : " << target.GetCurrentHp() << "/" << target.GetMaxHp() << "\n";
 }
 
@@ -46,6 +49,7 @@ void Enemy::TakeDamage(int damage)
         << " | HP " << GetCurrentHp() << "/" << GetMaxHp() << "\n";
 }
 
+// 상태 표시
 void Enemy::DisplayStat()
 {
     std::cout << "=== 몬스터 스탯 ===\n";
@@ -55,6 +59,7 @@ void Enemy::DisplayStat()
     std::cout << "보상 : 골드 " << GetDropGold() << ", 경험치 " << GetDropExp() << "\n";
 }
 
+// 확률에 따라 보상 출력
 DropResult Enemy::RollDrop() const
 {
     DropResult dr;
@@ -64,10 +69,10 @@ DropResult Enemy::RollDrop() const
     const std::vector<int>& idxs = enemyData.dropItemIdxVector;
     const std::vector<int>& chance = enemyData.dropItemChanceVector;
 
-    const size_t n = std::min(idxs.size(), probs.size());
+    const size_t n = std::min(idxs.size(), chance.size());
 
     for (size_t i = 0; i < n; ++i) {
-        if (Chance(probs[i])) dr.itemIdxList.push_back(idxs[i]);
+        if (Chance(chance[i])) dr.itemIdxList.push_back(idxs[i]);
     }
     return dr;
 }
