@@ -36,7 +36,14 @@ void GameManager::StartGame()
 	player = new Player("player", stat);
 #elif Build
 	cout << "플레이어 이름을 입력하세요: ";
-	cin >> name;
+	getline(cin, name);
+
+	while (GetIsNameValid(name)) {
+		cout << "[ERROR] 플레이어 이름에 공백을 포함할 수 없습니다.\n";
+		cout << "플레이어 이름을 입력하세요: ";
+		getline(cin, name);
+	}
+
 	player = new Player(name, stat);
 #endif
 	
@@ -58,7 +65,7 @@ void GameManager::StartGame()
 			player->DisplayStat();
 			break;
 		case 3:
-			UseShop();
+			ShopManager::Instance().VisitShop(this->player);
 			break;
 		default:
 			break;
@@ -66,7 +73,12 @@ void GameManager::StartGame()
 	}
 }
 
-void GameManager::UseShop()
+bool GameManager::GetIsNameValid(const string& input)
 {
-	ShopManager::Instance().VisitShop(this->player);
+	for (char c : input) {
+		if (isspace(static_cast<unsigned char>(c))) {
+			return true;
+		}
+	}
+	return false;
 }
