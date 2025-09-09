@@ -52,61 +52,88 @@ void BattleManager::InitBattle(Player* player)
 bool BattleManager::Battle()
 {
     while (1) {
+        system("cls"); // 화면 지우기 (윈도우 환경일 경우) / 필요 없으면 제거
+        cout << "==============================\n";
+        cout << "       ⚔ 현재 전투 상태 ⚔\n";
+        cout << "==============================\n\n";
+
+        cout << "[플레이어 상태]\n";
         m_player->DisplayStat();
-        m_enemy.get()->DisplayStat();
+        cout << "\n";
+
+        cout << "[적 상태]\n";
+        m_enemy->DisplayStat();
+        cout << "\n==============================\n\n";
+
         if (turn == 0) {
-            cout << "*플레이어 차례입니다.*" << endl;
+            cout << "▶ 플레이어 차례입니다.\n\n";
+            cout << " 선택지를 고르세요:\n";
+            cout << "  1. 아이템 사용\n";
+            cout << "  2. 공격\n";
+            cout << "  3. 도망\n";
+            cout << "--------------------------------\n";
+            cout << "입력: ";
+
             int choice;
-            cout << "1. 아이템 사용\n";
-            cout << "2. 공격\n";
-            cout << "3. 도망\n";
             cin >> choice;
 
             switch (choice) {
             case 1: {
                 int itemIdx;
-                cout << "사용할 아이템 번호 입력: ";
+                cout << "\n사용할 아이템 번호 입력: ";
                 cin >> itemIdx;
                 m_player->UseItem(itemIdx, m_player);
                 break;
             }
             case 2:
-                cout << "플레이어가 무기를 휘두릅니다";
+                cout << "\n플레이어가 무기를 휘두릅니다!\n";
                 m_player->Attack(m_enemy.get());
                 break;
             case 3:
-                cout << "도망쳤습니다....." << endl;
+                cout << "\n⚠ 도망쳤습니다...\n";
                 return false;
-                break;
             default:
-                cout << "잘못된 선택입니다.\n";
+                cout << "\n잘못된 선택입니다. 다시 입력하세요.\n";
                 break;
             }
             turn = 1;
         }
         else {
-            std::cout << "*" << m_enemy->GetName() << "의 차례입니다*" << endl;
-            m_enemy.get()->Attack(*m_player);
+            cout << "▶ " << m_enemy->GetName() << "의 차례입니다!\n\n";
+            m_enemy->Attack(*m_player);
             turn = 0;
         }
 
+        cout << "\n==============================\n";
+
         if (m_player->IsDead()) {
-            cout << "패배하였습니다...." << endl;
+            cout << "💀 패배하였습니다.... 💀\n";
             m_player->DisplayStat();
             m_player->SetCurrentHp(1);
             return false;
         }
         else if (m_enemy->IsDead()) {
-            cout << "승리하였습니다!" << endl;
+            cout << "🎉 승리하였습니다! 🎉\n\n";
             DropResult dr = m_enemy->RollDrop();
             m_player->addGold(dr.gold);
             m_player->AddExp(dr.exp);
+
+            cout << "획득한 보상:\n";
+            cout << "  - 골드: " << dr.gold << "\n";
+            cout << "  - 경험치: " << dr.exp << "\n";
+
             for (int i : dr.itemIdxList) {
+                cout << "  - 아이템 획득: " << i << "\n";
                 m_player->GetItem(ItemManager::GetInstance().MakeItem(i, 1));
             }
+            cout << "\n==============================\n";
             m_player->DisplayStat();
             return true;
         }
+
+        cout << "\n아무 키나 입력하면 다음 턴으로 진행합니다";
+        cin.ignore();
+        cin.get();
     }
 }
 
