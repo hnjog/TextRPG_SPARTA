@@ -148,6 +148,7 @@
     <ClInclude Include="EffectRegister.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
+    <ClInclude Include="EquipDesc.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="HealInstanceEffect.h" />
     <ClInclude Include="IncreaseAttackEffect.h" />

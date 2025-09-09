@@ -40,6 +40,9 @@
     <Filter Include="Enemy">
       <UniqueIdentifier>{25f5a0f6-57e0-49f0-aa1e-9669d4bde847}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Item\ItemDesc">
+      <UniqueIdentifier>{42eb25af-fb5e-402c-9bf8-b4eb87fcd23d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -89,9 +92,6 @@
     <ClInclude Include="JsonParser.h">
       <Filter>Data</Filter>
     </ClInclude>
-    <ClInclude Include="ItemData.h">
-      <Filter>Item</Filter>
-    </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>Item</Filter>
     </ClInclude>
@@ -137,6 +137,12 @@
     </ClInclude>
     <ClInclude Include="HealInstanceEffect.h">
       <Filter>Effect\DetailEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>Item\ItemDesc</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipDesc.h">
+      <Filter>Item\ItemDesc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
