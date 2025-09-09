@@ -40,6 +40,9 @@
     <Filter Include="Enemy">
       <UniqueIdentifier>{25f5a0f6-57e0-49f0-aa1e-9669d4bde847}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Item\ItemDesc">
+      <UniqueIdentifier>{7407d7b4-dc55-4d59-94ad-168f7a9a6daf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -56,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="EffectManager.cpp">
       <Filter>Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="HealEffect.cpp">
-      <Filter>Effect\DetailEffects</Filter>
     </ClCompile>
     <ClCompile Include="IncreaseAttackEffect.cpp">
       <Filter>Effect\DetailEffects</Filter>
@@ -84,6 +84,12 @@
     <ClCompile Include="EnemySpawnManager.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="HealInstanceEffect.cpp">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipItem.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataManager.h">
@@ -91,9 +97,6 @@
     </ClInclude>
     <ClInclude Include="JsonParser.h">
       <Filter>Data</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemData.h">
-      <Filter>Item</Filter>
     </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>Item</Filter>
@@ -112,9 +115,6 @@
     </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="HealEffect.h">
-      <Filter>Effect\DetailEffects</Filter>
     </ClInclude>
     <ClInclude Include="IncreaseAttackEffect.h">
       <Filter>Effect\DetailEffects</Filter>
@@ -145,6 +145,18 @@
     </ClInclude>
     <ClInclude Include="EnemySpawnManager.h">
       <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="HealInstanceEffect.h">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipItem.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipDesc.h">
+      <Filter>Item\ItemDesc</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>Item\ItemDesc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
