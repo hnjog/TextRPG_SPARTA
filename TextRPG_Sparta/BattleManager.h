@@ -8,7 +8,7 @@ class BattleManager
 {
 private:
 	Player* m_player = nullptr;
-	vector<Enemy*> m_enemys;
+	Enemy* m_enemy = nullptr;
 
 	int turn = 0;
 public:

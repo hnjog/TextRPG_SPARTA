@@ -28,7 +28,7 @@ public:
 	//Getter
 	int GetCurrentHp() const { return m_baseStat.currentHp; }
 	int GetMaxHp() const { return m_baseStat.maxHp; }
-	int GetAttack() const { return m_baseStat.attack; }
+	virtual int GetAttack() const { return m_baseStat.attack; }
 	string GetName() const { return m_name; }
 };
 
