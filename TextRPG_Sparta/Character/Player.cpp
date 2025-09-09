@@ -5,7 +5,7 @@
 Player::Player(string name, Stat stat):CharacterBase(name, stat)
 {
 	m_level	=	1;
-	m_gold	=	0;
+	m_gold	=	1000;
 	m_experience = 0;
 }
 
@@ -39,8 +39,18 @@ void Player::GetItem(ItemInstance* item)
 		auto it = find_if(m_inventory.begin(),m_inventory.end(), [item](const ItemInstance* invItem) {
 			return invItem->GetItemIdx() == item->GetItemIdx();
 			});
+
 		if (it != m_inventory.end()) {
 			(*it)->AddItemStock(item->GetItemStock());
+		} 
+		else {
+			// 이터레이터 못찾으면 일단 삽입
+			m_inventory.push_back(item);
+
+			// 소팅할까요?
+			/*sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
+				return A->GetItemName() < B->GetItemName();
+				});*/
 		}
 		else {
 			m_inventory.push_back(item);
@@ -77,6 +87,11 @@ void Player::AddExp(int exp)
 
 	cout << "현재 경험치: " << m_experience << " / " << m_level * 10 << endl;
 
+}
+
+int Player::getGold() const
+{
+	return this->m_gold;
 }
 
 void Player::addGold(int gold)

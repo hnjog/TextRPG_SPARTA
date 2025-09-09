@@ -70,3 +70,8 @@ const ItemData* ItemManager::GetItemData(int idx)
 
 	return &it->second;
 }
+
+int ItemManager::GetItemTypeCount()
+{
+	return itemMapByIdx.size();
+}

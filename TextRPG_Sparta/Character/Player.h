@@ -21,6 +21,8 @@ public:
     void GetItem(ItemInstance* item);
 
     void AddExp(int exp);
+
+    int getGold() const;
     void addGold(int gold);
     bool useGold(int gold);
 
