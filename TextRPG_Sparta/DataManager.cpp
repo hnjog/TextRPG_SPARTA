@@ -1,4 +1,4 @@
-﻿#include "DataManager.h"
+#include "DataManager.h"
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -13,6 +13,7 @@
 #endif
 
 #include <iostream>
+#include "EquipDesc.h"
 
 // ---------- Singleton ----------
 DataManager& DataManager::GetInstance()
@@ -158,7 +159,6 @@ bool DataManager::Initialize()
 		std::cout << "Enemy.json do not exist!" << '\n';
 	}
 
-
 	initialized = true;
 
 	return initialized;
@@ -231,6 +231,28 @@ void DataManager::LoadItemsJson(const JsonValue& root)
 				it.isStackable = true;
 			else
 				it.isStackable = false;
+		}
+
+		const JsonValue* pIsEquipable = obj.get("IsEquipable");
+		if (pIsEquipable && pIsEquipable->type == JsonValue::Type::String)
+		{
+			if (pIsEquipable->str == "o")
+				it.isEquipable = true;
+			else
+				it.isEquipable = false;
+		}
+
+		const JsonValue* pEquipParts = obj.get("EquipParts");
+		if (pEquipParts && pEquipParts->type == JsonValue::Type::String)
+		{
+			if (pEquipParts->str == "Weapon")
+				it.equipParts = ItemEquipParts::IEP_WEAPON;
+			else if (pEquipParts->str == "Head")
+				it.equipParts = ItemEquipParts::IEP_HEAD;
+			else if (pEquipParts->str == "Armor")
+				it.equipParts = ItemEquipParts::IEP_ARMOR;
+			else
+				it.equipParts = ItemEquipParts::IEP_NONE;
 		}
 
 		itemDataVector.push_back(it);
