@@ -52,9 +52,7 @@ void Player::GetItem(ItemInstance* item)
 				return A->GetItemName() < B->GetItemName();
 				});*/
 		}
-		else {
-			m_inventory.push_back(item);
-		}
+
 	}	
 	else {
 		m_inventory.push_back(item);
