@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BattleManager.cpp" />
     <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="EffectManager.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="ShopManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleManager.h" />
     <ClInclude Include="Character\CharacterBase.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="DataManager.h" />

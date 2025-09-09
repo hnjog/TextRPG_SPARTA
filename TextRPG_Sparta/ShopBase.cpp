@@ -105,28 +105,28 @@ int ShopBase::CheckPrice(int itemID, int count)
 	if (itemData == nullptr)
 	{
 		cout << "ERROR : 아이템 번호를 확인해주세요." << endl;
-		return 0;
+		return -1;
 	}
 
 	//판매중인 아이템이 아님
 	if (sellList.find(itemID) == sellList.end() || sellList[itemID] == 0)
 	{
 		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
-		return 0;
+		return -1;
 	}
 
 	//구매하려는 개수가 0 이하
 	if (count <= 0)
 	{
 		cout << "ERROR : 구매할 개수가 0 이하입니다." << endl;
-		return 0;
+		return -1;
 	}
 
 	//구매하려는 개수가 재고보다 많음
 	if (sellList[itemID] < count)
 	{
 		cout << "ERROR : 구매할 개수가 판매중인 개수보다 많습니다." << endl;
-		return 0;
+		return -1;
 	}
 
 	//가격 계산하고 반환
