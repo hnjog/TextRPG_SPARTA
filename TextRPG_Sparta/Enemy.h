@@ -19,7 +19,7 @@ protected:
 
 public:
     // 생성자 & 초기화
-    Enemy(EnemyData& d, int& l)
+    Enemy(const EnemyData& d, int l)
         : enemyData(d), level(l)
     {
         InitializeFromData();
