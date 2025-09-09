@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 #include <memory>
 #include <string>
@@ -10,21 +10,21 @@
 
 class EnemySpawnManager {
 public:
-    // ½Ì±ÛÅÏ, µ¥ÀÌÅÍ °¡Á®¿À±â, ½Ì±ÛÅÏ ÃÊ±âÈ­ ÈÄ¿¡
-    // EnemySpawnManager::GetInstance().LoadFromDataManager(dm); ·Î È£ÃâÇÏ¿© µ¥ÀÌÅÍ °¡Á®¿À±â
+    // ì‹±ê¸€í„´, ë°ì´í„° ê°€ì ¸ì˜¤ê¸°, ì‹±ê¸€í„´ ì´ˆê¸°í™” í›„ì—
+    // EnemySpawnManager::GetInstance().LoadFromDataManager(dm); ë¡œ í˜¸ì¶œí•˜ì—¬ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
     static EnemySpawnManager& GetInstance();
-    int LoadFromDataManager(DataManager& dm); // DataManager Å¬·¡½º¿¡ ÀÖ´Â TakeEnemyData ÇÔ¼ö¸¦ ÅëÇØ EnemyData °¡Á®¿À±â | µ¥ÀÌÅÍ °¹¼ö ¹İÈ¯
+    int LoadFromDataManager(DataManager& dm); // DataManager í´ë˜ìŠ¤ì— ìˆëŠ” TakeEnemyData í•¨ìˆ˜ë¥¼ í†µí•´ EnemyData ê°€ì ¸ì˜¤ê¸° | ë°ì´í„° ê°¯ìˆ˜ ë°˜í™˜
 
-    //ÃÊ±â°ª
+    //ì´ˆê¸°ê°’
     int index = 1;
     int level = 1;
 
-    // idx¿Í level·Î ¸ó½ºÅÍ ½ºÆù | Enemy ¹İÈ¯
+    // idxì™€ levelë¡œ ëª¬ìŠ¤í„° ìŠ¤í° | Enemy ë°˜í™˜
     std::unique_ptr<Enemy> SpawnEnemy(int idx, int lvl);
 
-    // ¸ó½ºÅÍ Á¤º¸ Ãâ·Â
-    void GetEnemy() const;      // Enemy Á¤º¸ Ãâ·Â
-    void DisplayItems() const;  // µå¶ø °á°ú Ãâ·Â
+    // ëª¬ìŠ¤í„° ì •ë³´ ì¶œë ¥
+    void GetEnemy() const;      // Enemy ì •ë³´ ì¶œë ¥
+    void DisplayItems() const;  // ë“œë ê²°ê³¼ ì¶œë ¥
 
 private:
     EnemySpawnManager() = default;
@@ -32,9 +32,9 @@ private:
     //EnemyData
     std::vector<EnemyData> enemyDB;
 
-    //ÀÎµ¦½º, ·¹º§°ª ÃÊ±âÈ­
+    //ì¸ë±ìŠ¤, ë ˆë²¨ê°’ ì´ˆê¸°í™”
     void InitData(int idx, int lvl) { index = idx; level = lvl; }
 
-    // ÀÎµ¦½º·Î EnemyData °¡Á®¿À±â
+    // ì¸ë±ìŠ¤ë¡œ EnemyData ê°€ì ¸ì˜¤ê¸°
     const EnemyData* FindbyIndex() const;
 };

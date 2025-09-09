@@ -1,10 +1,10 @@
-#include "Enemy.h"
+ï»¿#include "Enemy.h"
 #include <random>
 #include <chrono>
 #include <iomanip>
 #include <algorithm>
 
-// È®·ü ÇÔ¼ö
+// í™•ë¥  í•¨ìˆ˜
 int Enemy::RandRange(int l, int r) {
     static thread_local std::mt19937 rng{
         (uint32_t)std::chrono::steady_clock::now().time_since_epoch().count()
@@ -17,7 +17,7 @@ bool Enemy::Chance(int percent) {
     return RandRange(1, 100) <= percent;
 }
 
-//ÃÊ±âÈ­
+//ì´ˆê¸°í™”
 void Enemy::InitializeFromData()
 {
     int hp = GetHpAtLevel(level);
@@ -28,38 +28,38 @@ void Enemy::InitializeFromData()
     SetAttack(atk);
 }
 
-//  ===== ÀüÅõ =====
+//  ===== ì „íˆ¬ =====
 void Enemy::Attack(CharacterBase& target)
 {
     if (IsDead()) return;
 
     target.TakeDamage(GetAttack());
 
-    std::cout << "[¸ó½ºÅÍ] " << enemyData.name
-        << " °ø°İ! (" << GetAttack()
-        << ") -> ÇÃ·¹ÀÌ¾î HP : " << target.GetCurrentHp() << "/" << target.GetMaxHp() << "\n";
+    std::cout << "[ëª¬ìŠ¤í„°] " << enemyData.name
+        << " ê³µê²©! (" << GetAttack()
+        << ") -> í”Œë ˆì´ì–´ HP : " << target.GetCurrentHp() << "/" << target.GetMaxHp() << "\n";
 }
 
 void Enemy::TakeDamage(int damage)
 {
     SetCurrentHpClamped(GetCurrentHp() - damage);
 
-    std::cout << "[¸ó½ºÅÍ] " << enemyData.name
-        << " ÇÇ°İ! : -" << damage
+    std::cout << "[ëª¬ìŠ¤í„°] " << enemyData.name
+        << " í”¼ê²©! : -" << damage
         << " | HP " << GetCurrentHp() << "/" << GetMaxHp() << "\n";
 }
 
-// »óÅÂ Ç¥½Ã
+// ìƒíƒœ í‘œì‹œ
 void Enemy::DisplayStat()
 {
-    std::cout << "=== ¸ó½ºÅÍ ½ºÅÈ ===\n";
-    std::cout << "ÀÌ¸§ : " << enemyData.name << " (·¹º§." << level << ")\n";
-    std::cout << "Ã¼·Â   : " << GetCurrentHp() << " / " << GetMaxHp() << "\n";
-    std::cout << "°ø°İ·Â  : " << GetAttack() << "\n";
-    std::cout << "º¸»ó : °ñµå " << GetDropGold() << ", °æÇèÄ¡ " << GetDropExp() << "\n";
+    std::cout << "=== ëª¬ìŠ¤í„° ìŠ¤íƒ¯ ===\n";
+    std::cout << "ì´ë¦„ : " << enemyData.name << " (ë ˆë²¨." << level << ")\n";
+    std::cout << "ì²´ë ¥   : " << GetCurrentHp() << " / " << GetMaxHp() << "\n";
+    std::cout << "ê³µê²©ë ¥  : " << GetAttack() << "\n";
+    std::cout << "ë³´ìƒ : ê³¨ë“œ " << GetDropGold() << ", ê²½í—˜ì¹˜ " << GetDropExp() << "\n";
 }
 
-// È®·ü¿¡ µû¶ó º¸»ó Ãâ·Â
+// í™•ë¥ ì— ë”°ë¼ ë³´ìƒ ì¶œë ¥
 DropResult Enemy::RollDrop() const
 {
     DropResult dr;
