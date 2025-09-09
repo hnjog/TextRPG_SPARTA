@@ -43,20 +43,20 @@ public:
 	//아이템 1종류를 지정한 개수만큼 추가
 	//=== false 사유 ===
 	//* 추가할 개수가 0 이하
-	bool AddItem(int itemID, int count = 1);
+	bool AddItem(int idx, int count = 1);
 
 	//아이템 여러 종류 각각 지정한 개수만큼 추가
 	//=== false 사유 ===
 	//* itemIDList와 countList의 size가 0이거나 불일치 
 	//* 추가할 개수가 0 이하인 값이 있음
-	bool AddItemRange(vector<int> itemIDList, vector<int> countList);
+	bool AddItemRange(vector<int> idxList, vector<int> countList);
 
 	//아이템 1종류를 지정한 개수만큼 제거
 	//=== false 사유 ===
 	//* 판매중인 아이템이 아님
 	//* 제거할 개수가 0 이하
 	//* 제거할 개수가 재고보다 많음
-	bool RemoveItem(int itemID, int count = 1);
+	bool RemoveItem(int idx, int count = 1);
 
 	//지정한 아이템과 개수가 얼마인지 확인
 	//성공적으로 처리시 그 값이 반환화된다. 에러 발생시 -1이 반환된다.
@@ -65,7 +65,7 @@ public:
 	//* 판매중인 아이템이 아님
 	//* 구매하려는 개수가 0 이하
 	//* 구매하려는 개수가 재고보다 많음
-	int CheckPrice(int itemID, int count = 1);
+	int CheckPrice(int idx, int count = 1);
 
 	//아이템 판매 (구현중)
 	//상점 입장에서 판매이므로 캐릭터 입장에서는 구매
@@ -75,5 +75,5 @@ public:
 	//* 판매중인 아이템이 아님
 	//* 구매하려는 개수가 0 이하
 	//* 구매하려는 개수가 재고보다 많음
-	SellItemData SellItem(int itemID, int count = 1);
+	SellItemData SellItem(int idx, int count = 1);
 };
