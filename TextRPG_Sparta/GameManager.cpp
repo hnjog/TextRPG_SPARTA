@@ -18,11 +18,6 @@ void GameManager::InitGame()
 	// 상점 초기화
 	ShopManager::Instance().InitShop();
 
-
-}
-
-void GameManager::StartGame()
-{
 	// 캐릭터 생성
 	string name;
 	Stat stat = Stat();
@@ -37,8 +32,11 @@ void GameManager::StartGame()
 	cin >> name;
 	player = new Player(name, stat);
 #endif
-	
 
+}
+
+void GameManager::StartGame()
+{
 	// 플레이 선택
 	int opt = 0;
 	while (opt != -1) {
