@@ -44,7 +44,7 @@ void ShopManager::VisitShop(Player* player)
 	// Check total price
 	auto price = this->shop.CheckPrice(opt, cnt);
 	
-	if (price == 0) {
+	if (price == -1) {
 		// ShopBase 자체 예외처리
 		return;
 	}
