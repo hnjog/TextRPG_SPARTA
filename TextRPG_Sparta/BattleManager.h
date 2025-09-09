@@ -9,10 +9,12 @@ class BattleManager
 private:
 	Player* m_player = nullptr;
 	vector<Enemy*> m_enemys;
+
+	int turn = 0;
 public:
 	BattleManager() = default;
 	void StartBattle(Player* player);
-	bool Update();
+	void Battle();
 	void EndBattle();
 };
 

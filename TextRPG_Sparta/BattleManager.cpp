@@ -20,16 +20,18 @@ void BattleManager::StartBattle(Player* player)
 
 }
 
-bool BattleManager::Battle()
+void BattleManager::Battle()
 {
-    if (turn == 0) {
+    while (1) {
+        if (turn == 0) {
 
-        turn = 1;
+            turn = 1;
+        }
+        else {
+
+            turn = 0;
+        }
     }
-    else {
-        turn = 0;
-    }
-    return false;
 }
 
 void BattleManager::EndBattle()
