@@ -7,3 +7,9 @@ enum class ItemEquipParts
 	IEP_HEAD,
 	IEP_ARMOR,
 };
+
+enum class ItemEquipState
+{
+	IES_UnEquipped,
+	IED_Equipped,
+};
