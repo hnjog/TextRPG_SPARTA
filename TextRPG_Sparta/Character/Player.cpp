@@ -44,21 +44,12 @@ void Player::GetItem(ItemInstance* item)
 			(*it)->AddItemStock(item->GetItemStock());
 		} 
 		else {
-			// 이터레이터 못찾으면 일단 삽입
 			m_inventory.push_back(item);
-
-			// 소팅할까요?
-			/*sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
-				return A->GetItemName() < B->GetItemName();
-				});*/
 		}
 
 	}	
 	else {
 		m_inventory.push_back(item);
-		//sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
-		//	return A->GetItemName() < B->GetItemName();
-		//	});
 	} 
 	cout << item->GetItemName() << "를(을) 획득하였습니다" << endl;
 }
@@ -69,11 +60,11 @@ void Player::AddExp(int exp)
 	m_experience += exp;
 	cout << GetName() << "은(는) " << exp << " 경험치를 얻었습니다." << endl;
 
-	while (m_experience >= m_level * 10) {
-		m_experience -= m_level * 10;
+	while (m_experience >= m_level * 100) {
+		m_experience -= m_level * 100;
 		m_level++;
 
-		int hpIncrease = 10;
+		int hpIncrease = 20;
 		int newMaxHp = GetMaxHp() + hpIncrease;
 		SetMaxHp(newMaxHp);
 		SetCurrentHp(newMaxHp);
@@ -83,7 +74,7 @@ void Player::AddExp(int exp)
 			<<"최대 체력: " << newMaxHp << endl;
 	}
 
-	cout << "현재 경험치: " << m_experience << " / " << m_level * 10 << endl;
+	cout << "현재 경험치: " << m_experience << " / " << m_level * 100 << endl;
 
 }
 

@@ -51,7 +51,8 @@ void GameManager::StartGame()
 		switch (opt)
 		{	
 		case 1:
-			BattleManager::GetInstance().StartBattle(player);
+			if(!BattleManager::GetInstance().StartBattle(player))
+				return;
 			break;
 		case 2:
 			player->DisplayStat();
