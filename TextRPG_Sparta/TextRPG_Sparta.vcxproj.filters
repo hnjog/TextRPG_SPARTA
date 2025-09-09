@@ -54,7 +54,7 @@
     <ClCompile Include="EffectManager.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
-    <ClCompile Include="HealEffect.cpp">
+    <ClCompile Include="HealInstanceEffect.cpp">
       <Filter>Effect\DetailEffects</Filter>
     </ClCompile>
     <ClCompile Include="IncreaseAttackEffect.cpp">
@@ -104,7 +104,7 @@
     <ClInclude Include="EffectManager.h">
       <Filter>Effect</Filter>
     </ClInclude>
-    <ClInclude Include="HealEffect.h">
+    <ClInclude Include="HealInstanceEffect.h">
       <Filter>Effect\DetailEffects</Filter>
     </ClInclude>
     <ClInclude Include="IncreaseAttackEffect.h">

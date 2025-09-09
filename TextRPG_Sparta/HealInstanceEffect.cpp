@@ -1,12 +1,12 @@
-﻿#include "HealEffect.h"
+#include "HealInstanceEffect.h"
 #include "Character/CharacterBase.h"
 
-std::string HealEffect::GetId()
+std::string Heal_InstanceEffect::GetId()
 {
-	return "Heal";
+	return "Heal_Instance";
 }
 
-bool HealEffect::Apply(EffectContext& effectContext)
+bool Heal_InstanceEffect::Apply(EffectContext& effectContext)
 {
 	CharacterBase* target = effectContext.target;
 	if (nullptr == target)
@@ -15,8 +15,15 @@ bool HealEffect::Apply(EffectContext& effectContext)
 	if (effectContext.value < 0)
 		return false;
 
+	if (effectContext.trigger != EffectTrigger::EFT_USE)
+		return false;
+
 	int targetMaxHp = target->GetMaxHp();
 	int targetCurrentHp = target->GetCurrentHp();
+
+	if (targetCurrentHp >= targetMaxHp)
+		return false;
+
 	int targetResultHp = min(targetCurrentHp + effectContext.value, targetMaxHp);
 	target->SetCurrentHp(targetResultHp);
 
