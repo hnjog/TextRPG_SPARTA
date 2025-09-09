@@ -31,6 +31,30 @@ void ShopManager::InitShop()
 /// </summary>
 void ShopManager::VisitShop(Player* player)
 {
+	int opt;
+	cout << "1. 아이템 구매\n2. 아이템 판매\n입력하세요(나가기 -1): ";
+	cin >> opt;
+
+	switch (opt)
+	{
+	case 1:
+		Sell(player);
+		break;
+	case 2:
+		Purchase(player);
+		break;
+	default:
+		break;
+	}
+}
+
+void ShopManager::Purchase(Player* player)
+{
+	cout << "플레이어의 아이템을 매입\n";
+}
+
+void ShopManager::Sell(Player* player)
+{
 	this->shop.PrintSellingItems();
 
 	int opt, cnt;
@@ -43,7 +67,7 @@ void ShopManager::VisitShop(Player* player)
 
 	// Check total price
 	auto price = this->shop.CheckPrice(opt, cnt);
-	
+
 	if (price == -1) {
 		// ShopBase 자체 예외처리
 		return;
@@ -54,10 +78,10 @@ void ShopManager::VisitShop(Player* player)
 	{
 		cout << "보유한 골드가 부족하여 아이템을 구매할 수 없습니다.\n";
 		return;
-	}
+}
 
 	auto receipt = shop.SellItem(opt, cnt);
-	
+
 
 #if DEV
 	auto itemData = ItemManager::GetInstance().GetItemData(receipt.idx);
