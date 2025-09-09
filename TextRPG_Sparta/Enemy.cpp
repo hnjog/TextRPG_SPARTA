@@ -22,10 +22,12 @@ void Enemy::InitializeFromData()
 {
     int hp = GetHpAtLevel(level);
     int atk = GetAttackAtLevel(level);
+    string name = enemyData.name;
 
     SetMaxHp(hp);
     SetCurrentHp(hp);
     SetAttack(atk);
+    SetName(enemyData.name);
 }
 
 //  ===== 전투 =====
