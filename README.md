@@ -113,27 +113,27 @@ Effect를 받아 Apply 만 호출하여 효과 성공여부를 파악하는 방�
 
 ## UML
 
-### Clsss
+### Class
 
 [![Image](https://github.com/user-attachments/assets/b443889f-baf6-4762-b7f7-1987fb175db5)](https://github.com/user-attachments/assets/b443889f-baf6-4762-b7f7-1987fb175db5){: .image-popup}<br>
 
-[drawIo](https://app.diagrams.net/#G1p9FV7qsxyYK5KyON9Qgbw5q-oTzeOcDd#%7B%22pageId%22%3A%22c4acf3e9-155e-7222-9cf6-157b1a14988f%22%7D){:target="_blank"}<br>
+[drawIo](https://app.diagrams.net/#G1p9FV7qsxyYK5KyON9Qgbw5q-oTzeOcDd#%7B%22pageId%22%3A%22c4acf3e9-155e-7222-9cf6-157b1a14988f%22%7D)<br>
 
 ---
 
 ### Input Data
 [![Image](https://github.com/user-attachments/assets/43b7e2db-a74f-4cce-8127-4bfc277848ea)](https://github.com/user-attachments/assets/43b7e2db-a74f-4cce-8127-4bfc277848ea){: .image-popup}<br>
 
-[drawIo](https://app.diagrams.net/?libs=general;uml#G1iOIti2LcJnMoZcF6xcrK-28HOZ-3vafa#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D){:target="_blank"}<br>
+[drawIo](https://app.diagrams.net/?libs=general;uml#G1iOIti2LcJnMoZcF6xcrK-28HOZ-3vafa#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D)<br>
 
 
 ## ETC...
 
 ### 트러블 슈팅 관련
 
-[CSV-Json-Cpp 파싱 관련 인코딩 문제](https://www.notion.so/teamsparta/CSV-Json-Cpp-2642dc3ef514800dbf98e26e6c09cfff){:target="_blank"}<br>
+[CSV-Json-Cpp 파싱 관련 인코딩 문제](https://www.notion.so/teamsparta/CSV-Json-Cpp-2642dc3ef514800dbf98e26e6c09cfff)<br>
 
-[EffectFactory 관련 빌드 에러](https://www.notion.so/teamsparta/0904-EffectFactory-C2664-2642dc3ef51480d4bd12eea1c45b1509){:target="_blank"}<br>
+[EffectFactory 관련 빌드 에러](https://www.notion.so/teamsparta/0904-EffectFactory-C2664-2642dc3ef51480d4bd12eea1c45b1509)}<br>
 
 ---
 
@@ -172,5 +172,3 @@ Effect를 받아 Apply 만 호출하여 효과 성공여부를 파악하는 방�
 - 원하는 데이터로 csv 수정<br>
 - CSVParser input output 을 cmd에서 입력<br>
 - 바뀐 json 파일로 DataManager가 파싱됨<br>
-
-ps) 혹시 별도의 데이터 추가를 원하시는 분은 '현재훈'을 찾아주세요...<br>
