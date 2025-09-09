@@ -1,4 +1,4 @@
-﻿#include "IncreaseAttackEffect.h"
+#include "IncreaseAttackEffect.h"
 #include"Character/CharacterBase.h"
 
 std::string IncreaseAttackEffect::GetId()
@@ -16,6 +16,24 @@ bool IncreaseAttackEffect::Apply(EffectContext& effectContext)
 		return false;
 
 	int targetAttack = target->GetAttack();
-	target->SetAttack(targetAttack + effectContext.value);
+
+	switch (effectContext.trigger)
+	{
+	case EffectTrigger::EFT_USE:
+	case EffectTrigger::EFT_EQUIP:
+	{
+		target->SetAttack(targetAttack + effectContext.value);
+	}
+	break;
+	case EffectTrigger::EFT_UNEQUIP:
+	{
+		// 최소 공격력이 0은 되어야 하기에
+		target->SetAttack(max(0, targetAttack - effectContext.value));
+	}
+	break;
+	default:
+		break;
+	}
+
 	return true;
 }
