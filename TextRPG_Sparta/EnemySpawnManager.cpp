@@ -6,6 +6,7 @@ EnemySpawnManager& EnemySpawnManager::GetInstance() {
     return instance;
 }
 
+//
 int EnemySpawnManager::LoadFromDataManager(DataManager& dm)
 {
     
