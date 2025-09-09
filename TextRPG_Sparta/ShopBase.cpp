@@ -174,3 +174,45 @@ SellItemData ShopBase::SellItem(int idx, int count)
 	sellItemData.stocks = count;
 	return sellItemData;
 }
+
+int ShopBase::CheckPriceAndSellItem(SellItemData& sellItemData, int idx, int count)
+{
+	//올바른 아이템 번호가 아님
+	const ItemData* itemData = ItemManager::GetInstance().GetItemData(idx);
+	if (itemData == nullptr)
+	{
+		cout << "ERROR : 아이템 번호를 확인해주세요." << endl;
+		return -1;
+	}
+
+	//판매중인 아이템이 아님
+	if (sellList.find(idx) == sellList.end() || sellList[idx] == 0)
+	{
+		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
+		return -1;
+	}
+
+	//구매하려는 개수가 0 이하
+	if (count <= 0)
+	{
+		cout << "ERROR : 구매할 개수가 0 이하입니다." << endl;
+		return -1;
+	}
+
+	//구매하려는 개수가 재고보다 많음
+	if (sellList[idx] < count)
+	{
+		cout << "ERROR : 구매할 개수가 판매중인 개수보다 많습니다." << endl;
+		return -1;
+	}
+
+	//판매 처리
+	sellList[idx] -= count;
+
+	sellItemData.idx = itemData->idx;
+	sellItemData.price = itemData->price;
+	sellItemData.stocks = count;
+
+	//가격 계산하고 반환
+	return itemData->price * count;
+}
