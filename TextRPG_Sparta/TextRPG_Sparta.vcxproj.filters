@@ -72,6 +72,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="ShopManager.cpp">
+      <Filter>GameManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataManager.h">
@@ -122,6 +125,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopManager.h">
+      <Filter>GameManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
