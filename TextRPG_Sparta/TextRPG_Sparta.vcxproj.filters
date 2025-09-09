@@ -40,9 +40,6 @@
     <Filter Include="Enemy">
       <UniqueIdentifier>{25f5a0f6-57e0-49f0-aa1e-9669d4bde847}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Item\ItemDesc">
-      <UniqueIdentifier>{42eb25af-fb5e-402c-9bf8-b4eb87fcd23d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -59,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="EffectManager.cpp">
       <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="HealEffect.cpp">
+      <Filter>Effect\DetailEffects</Filter>
     </ClCompile>
     <ClCompile Include="IncreaseAttackEffect.cpp">
       <Filter>Effect\DetailEffects</Filter>
@@ -81,11 +81,8 @@
     <ClCompile Include="ShopManager.cpp">
       <Filter>GameManager</Filter>
     </ClCompile>
-    <ClCompile Include="HealInstanceEffect.cpp">
-      <Filter>Effect\DetailEffects</Filter>
-    </ClCompile>
-    <ClCompile Include="EquipItem.cpp">
-      <Filter>Item</Filter>
+    <ClCompile Include="EnemySpawnManager.cpp">
+      <Filter>Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="JsonParser.h">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>Item</Filter>
     </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>Item</Filter>
@@ -113,6 +113,9 @@
     <ClInclude Include="EffectManager.h">
       <Filter>Effect</Filter>
     </ClInclude>
+    <ClInclude Include="HealEffect.h">
+      <Filter>Effect\DetailEffects</Filter>
+    </ClInclude>
     <ClInclude Include="IncreaseAttackEffect.h">
       <Filter>Effect\DetailEffects</Filter>
     </ClInclude>
@@ -125,7 +128,6 @@
     <ClInclude Include="GameManager.h">
       <Filter>GameManager</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyData.h" />
     <ClInclude Include="ShopBase.h">
       <Filter>Shop</Filter>
     </ClInclude>
@@ -138,17 +140,11 @@
     <ClInclude Include="ShopManager.h">
       <Filter>GameManager</Filter>
     </ClInclude>
-    <ClInclude Include="HealInstanceEffect.h">
-      <Filter>Effect\DetailEffects</Filter>
+    <ClInclude Include="EnemyData.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="ItemData.h">
-      <Filter>Item\ItemDesc</Filter>
-    </ClInclude>
-    <ClInclude Include="EquipDesc.h">
-      <Filter>Item\ItemDesc</Filter>
-    </ClInclude>
-    <ClInclude Include="EquipItem.h">
-      <Filter>Item</Filter>
+    <ClInclude Include="EnemySpawnManager.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
