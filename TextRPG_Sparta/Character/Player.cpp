@@ -15,7 +15,15 @@ bool Player::UseItem(int idx, CharacterBase* target)
 		return invItem->GetItemIdx() == idx;
 		});
 	if (it != m_inventory.end()) {
-		(*it)->UseItem(target);
+		if ((*it)->UseItem(target)) {
+			if ((*it)->GetItemStock() <= 0) {
+				delete* it;
+				m_inventory.erase(it);
+			}
+		}
+		else {
+			cout << "사용할 수 없는 아이템 입니다." << endl;
+		}
 		return true;
 	}
 	else {
@@ -34,12 +42,15 @@ void Player::GetItem(ItemInstance* item)
 		if (it != m_inventory.end()) {
 			(*it)->AddItemStock(item->GetItemStock());
 		}
+		else {
+			m_inventory.push_back(item);
+		}
 	}	
 	else {
 		m_inventory.push_back(item);
-		sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
-			return A->GetItemName() < B->GetItemName();
-			});
+		//sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
+		//	return A->GetItemName() < B->GetItemName();
+		//	});
 	} 
 	cout << item->GetItemName() << "를(을) 획득하였습니다" << endl;
 }
