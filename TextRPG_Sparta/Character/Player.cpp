@@ -114,12 +114,12 @@ bool Player::useGold(int gold)
 void Player::DisplayStat()
 {
 	cout << "===== Player Status =====" << endl;
-	cout << "이름       : " << GetName() << endl;
-	cout << "Level	    : " << m_level << endl;
-	cout << "HP	        : " << GetCurrentHp() << " / " << GetMaxHp() << endl;
-	cout << "공격력     : " << GetAttack() << endl;
-	cout << "경험치     : " << m_experience << endl;
-	cout << "골드       : " << m_gold << endl;
+	cout << "이름  : " << GetName() << endl;
+	cout << "Level : " << m_level << endl;
+	cout << "HP    : " << GetCurrentHp() << " / " << GetMaxHp() << endl;
+	cout << "공격력: " << GetAttack() << endl;
+	cout << "경험치: " << m_experience << endl;
+	cout << "골드  : " << m_gold << endl;
 	cout << "----- 인벤토리 -----" << endl;
 	if (m_inventory.empty()) {
 		cout << "인벤토리가 비어 있습니다." << endl;
