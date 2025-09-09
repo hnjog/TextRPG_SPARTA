@@ -14,6 +14,7 @@ private:
     vector<ItemInstance*> m_inventory;
 public:
     Player(string name, Stat stat);
+    int GetLevel() { return m_level; }
     int GetCurrentExp() { return m_experience; }
 
     bool UseItem(int idx, CharacterBase* target);

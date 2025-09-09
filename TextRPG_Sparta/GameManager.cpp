@@ -1,8 +1,10 @@
-#include <iostream>
+﻿#include <iostream>
 
 #include "GameManager.h"
 #include "ShopManager.h"
-
+#include "BattleManager.h"
+#include "EnemySpawnManager.h"
+#include "DataManager.h"
 #include "Character/Player.h"
 
 using namespace std;
@@ -17,7 +19,7 @@ void GameManager::InitGame()
 {
 	// 상점 초기화
 	ShopManager::Instance().InitShop();
-
+	EnemySpawnManager::GetInstance().LoadFromDataManager(DataManager::GetInstance());
 
 }
 
@@ -49,6 +51,7 @@ void GameManager::StartGame()
 		switch (opt)
 		{	
 		case 1:
+			BattleManager::GetInstance().StartBattle(player);
 			break;
 		case 2:
 			player->DisplayStat();
