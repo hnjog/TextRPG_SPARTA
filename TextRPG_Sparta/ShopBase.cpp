@@ -168,7 +168,7 @@ SellItemData ShopBase::SellItem(int itemID, int count)
 
 	//판매 처리
 	sellList[itemID] -= count;
-	//SellItemData sellItemData;
+
 	sellItemData.idx = itemData->idx;
 	sellItemData.price = itemData->price;
 	sellItemData.stocks = count;
