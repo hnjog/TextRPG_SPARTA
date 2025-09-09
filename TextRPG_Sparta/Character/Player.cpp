@@ -54,6 +54,25 @@ void Player::GetItem(ItemInstance* item)
 	cout << item->GetItemName() << "를(을) 획득하였습니다" << endl;
 }
 
+bool Player::PopItem(int idx, int stocks)
+{
+	auto it = find_if(m_inventory.begin(), m_inventory.end(), [idx](const ItemInstance* invItem) {
+		return invItem->GetItemIdx() == idx;
+		});
+
+	if (it != m_inventory.end()) {
+		if ((*it)->isStackableItem()) {
+			//(*it)->subtractItemStock();
+		}
+		if ((*it)->GetItemStock() <= 0) {
+			delete* it;
+			m_inventory.erase(it);
+		}
+		return true;
+	}
+	return false;
+}
+
 void Player::AddExp(int exp)
 {
 
