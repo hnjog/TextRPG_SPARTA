@@ -75,6 +75,9 @@
     <ClCompile Include="ShopManager.cpp">
       <Filter>GameManager</Filter>
     </ClCompile>
+    <ClCompile Include="EnemySpawnManager.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataManager.h">
