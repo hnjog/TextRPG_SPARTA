@@ -84,6 +84,9 @@
     <ClCompile Include="HealInstanceEffect.cpp">
       <Filter>Effect\DetailEffects</Filter>
     </ClCompile>
+    <ClCompile Include="EquipItem.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataManager.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="EquipDesc.h">
       <Filter>Item\ItemDesc</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipItem.h">
+      <Filter>Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
