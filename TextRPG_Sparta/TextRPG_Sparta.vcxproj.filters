@@ -122,7 +122,6 @@
     <ClInclude Include="GameManager.h">
       <Filter>GameManager</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyData.h" />
     <ClInclude Include="ShopBase.h">
       <Filter>Shop</Filter>
     </ClInclude>
@@ -131,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="ShopManager.h">
       <Filter>GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawnManager.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyData.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
