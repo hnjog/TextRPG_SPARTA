@@ -1,16 +1,17 @@
-#include "EnemySpawnManager.h"
+ï»¿#include "EnemySpawnManager.h"
 
-// --- ½Ì±ÛÅÏ ---
+// --- ì‹±ê¸€í„´ ---
 EnemySpawnManager& EnemySpawnManager::GetInstance() {
     static EnemySpawnManager instance;
     return instance;
 }
 
+//
 int EnemySpawnManager::LoadFromDataManager(DataManager& dm)
 {
     std::vector<EnemyData> list;
 
-    // º¤ÅÍ index µ¥ÀÌÅÍ index ¸ÂÃß±â (1ºÎÅÍ ½ÃÀÛ)
+    // ë²¡í„° index ë°ì´í„° index ë§ì¶”ê¸° (1ë¶€í„° ì‹œì‘)
     int maxIdx = -1;
     for (const auto& d : list) {
         if (d.idx > maxIdx) maxIdx = d.idx;
@@ -21,7 +22,7 @@ int EnemySpawnManager::LoadFromDataManager(DataManager& dm)
         enemyDB.resize(static_cast<size_t>(maxIdx + 1));
     }
 
-    // ÇØ´ç index ¿¡Á÷Á¢ ÀúÀå
+    // í•´ë‹¹ index ì—ì§ì ‘ ì €ì¥
     for (const auto& d : list) {
         if (d.idx < 0) continue;
         if (static_cast<size_t>(d.idx) >= enemyDB.size()) {
@@ -30,7 +31,7 @@ int EnemySpawnManager::LoadFromDataManager(DataManager& dm)
         enemyDB[d.idx] = d;
     }
 
-    // À¯È¿ ½½·Ô °³¼ö ¸®ÅÏ(ÀÌ¸§ÀÌ ºñ¾îÀÖÁö ¾Ê´Ù°í °¡Á¤)
+    // ìœ íš¨ ìŠ¬ë¡¯ ê°œìˆ˜ ë¦¬í„´(ì´ë¦„ì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ê³  ê°€ì •)
     int count = 0;
     for (const auto& d : enemyDB) {
         if (!d.name.empty()) ++count;
@@ -40,41 +41,41 @@ int EnemySpawnManager::LoadFromDataManager(DataManager& dm)
 
 std::unique_ptr<Enemy> EnemySpawnManager::SpawnEnemy(int idx, int lvl)
 {
-    //°ª ÀúÀå
+    //ê°’ ì €ì¥
     InitData(idx, lvl); 
     
-    // EnemyData ºÒ·¯¿À±â
+    // EnemyData ë¶ˆëŸ¬ì˜¤ê¸°
     const EnemyData* data = FindbyIndex();
     
-    //À¯È¿¼º Ã¼Å©
+    //ìœ íš¨ì„± ì²´í¬
     if (!data) {
-        std::cout << "[EnemySpawnManger] À¯È¿ÇÏÁö ¾ÊÀº idx: " << idx << "\n";
+        std::cout << "[EnemySpawnManger] ìœ íš¨í•˜ì§€ ì•Šì€ idx: " << idx << "\n";
         return nullptr;
     }
     
-    //Enemy °´Ã¼ ¹İÈ¯
+    //Enemy ê°ì²´ ë°˜í™˜
     return std::make_unique<Enemy>(*data, lvl);
 }
 
 
-// EnemyData °¡Á®¿À±â
+// EnemyData ê°€ì ¸ì˜¤ê¸°
 const EnemyData* EnemySpawnManager::FindbyIndex() const
 {
     if (index < 0) return nullptr;
     if (static_cast<size_t>(index) >= enemyDB.size()) return nullptr;
     const EnemyData& d = enemyDB[index];
-    if (d.name.empty()) return nullptr; // ºñ¾îÀÖ´Â ½½·ÔÀ¸·Î °£ÁÖ
+    if (d.name.empty()) return nullptr; // ë¹„ì–´ìˆëŠ” ìŠ¬ë¡¯ìœ¼ë¡œ ê°„ì£¼
     return &d;
 }
 
-// Enemy ½ºÅÈ Ãâ·Â
+// Enemy ìŠ¤íƒ¯ ì¶œë ¥
 void EnemySpawnManager::GetEnemy() const
 {
-    //À¯È¿¼º °Ë»ç
+    //ìœ íš¨ì„± ê²€ì‚¬
     const EnemyData* data = FindbyIndex();
     if (!data) {
         std::cout << "[EnemySpawnManager] Enemy index =" << index
-            << " µ¥ÀÌÅÍ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.\n";
+            << " ë°ì´í„°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
         return;
     }
 
@@ -85,23 +86,23 @@ void EnemySpawnManager::GetEnemy() const
     enemy.DisplayStat();
 }
 
-// Enemy º¸»ó Ãâ·Â
+// Enemy ë³´ìƒ ì¶œë ¥
 void EnemySpawnManager::DisplayItems() const
 {
-    // À¯È¿¼º °Ë»ç
+    // ìœ íš¨ì„± ê²€ì‚¬
     const EnemyData* data = FindbyIndex();
     if (!data) {
         std::cout << "[EnemySpawnManager] Enemy idx=" << index
-                  << " µ¥ÀÌÅÍ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.\n";
+                  << " ë°ì´í„°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
         return;
     }
 
     const std::vector<int>& idxs = data->dropItemIdxVector;
 
-    std::cout << "=== ¸ó½ºÅÍ (" << data->name << ", Lv." << level << ") ÀÇ º¸»ó ===\n";
-    std::cout << "°ñµå: " << data->dropGold << "\n";
-    std::cout << " °æÇèÄ¡: " << data->dropExp << "\n";
-    std::cout << "¾ÆÀÌÅÛ: ";
+    std::cout << "=== ëª¬ìŠ¤í„° (" << data->name << ", Lv." << level << ") ì˜ ë³´ìƒ ===\n";
+    std::cout << "ê³¨ë“œ: " << data->dropGold << "\n";
+    std::cout << " ê²½í—˜ì¹˜: " << data->dropExp << "\n";
+    std::cout << "ì•„ì´í…œ: ";
     for (size_t i = 0; i < idxs.size(); ++i) {
         std::cout << idxs[i];
         if (i + 1 < idxs.size()) std::cout << ", ";

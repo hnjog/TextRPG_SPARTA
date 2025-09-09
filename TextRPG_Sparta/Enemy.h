@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -18,7 +18,7 @@ protected:
     int level = 1;
 
 public:
-    // »ı¼ºÀÚ & ÃÊ±âÈ­
+    // ìƒì„±ì & ì´ˆê¸°í™”
     Enemy(const EnemyData& d, int l)
         : enemyData(d), level(l)
     {
@@ -28,20 +28,20 @@ public:
     void InitializeFromData();
 
 
-    // ÀüÅõ
+    // ì „íˆ¬
     void Attack(CharacterBase& target);
     virtual void TakeDamage(int damage) override;
     virtual void DisplayStat() override;
     virtual bool IsDead() override { return GetCurrentHp() <= 0; }
 
-    // º¸»ó
+    // ë³´ìƒ
     int GetDropGold() const { return enemyData.dropGold; }
     int GetDropExp()  const { return enemyData.dropExp; }
     const std::vector<int>& GetDropItemIdx() const { return enemyData.dropItemIdxVector; }
     const std::vector<int>& GetDropItemChance() const { return enemyData.dropItemChanceVector; }
-    DropResult RollDrop() const;   // È®·ü Àû¿ëÇØ¼­ ½ÇÁ¦ µå¶ø »êÃâ
+    DropResult RollDrop() const;   // í™•ë¥  ì ìš©í•´ì„œ ì‹¤ì œ ë“œë ì‚°ì¶œ
 
-    // ½ºÅÈ °ü·Ã
+    // ìŠ¤íƒ¯ ê´€ë ¨
     int GetHpAtLevel(int lv) const { return enemyData.baseHp + enemyData.hpPerLevel * (lv - 1); }
     int GetAttackAtLevel(int lv) const { return enemyData.baseAttack + enemyData.attackPerLevel * (lv - 1); }
     void SetCurrentHpClamped(int hp) {
@@ -50,7 +50,7 @@ public:
     }
 
 private:
-    // È®·ü
+    // í™•ë¥ 
     static int  RandRange(int l, int r);
     static bool Chance(int percent);
 };
