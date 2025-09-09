@@ -25,7 +25,7 @@ public:
 	void SetCurrentHp(int hp) { m_baseStat.currentHp = hp; };
 	void SetMaxHp(int hp) { m_baseStat.maxHp = hp; };
 	void SetAttack(int attack) { m_baseStat.attack = attack; };
-	void SetName(string name) { m_name; }
+	void SetName(string name) { m_name = name; }
 	//Getter
 	int GetCurrentHp() const { return m_baseStat.currentHp; }
 	int GetMaxHp() const { return m_baseStat.maxHp; }
