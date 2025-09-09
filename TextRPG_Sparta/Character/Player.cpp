@@ -129,7 +129,7 @@ void Player::DisplayStat()
 			ItemInstance* item = m_inventory[i];
 			cout << i + 1 << ". " << item->GetItemName()
 				<< " (가격: " << item->GetItemPrice()
-				<< ", 재고: " << (item->GetItemStock()) << ")"
+				<< ", 재고: " << (item->GetItemStock()) <<", idx: "<< item->GetItemIdx() << ")"
 				<< endl;
 		}
 	}

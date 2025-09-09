@@ -20,8 +20,10 @@ void BattleManager::StartBattle(Player* player)
             std::cout << "계속 탐사하시겠습니까?(Yes:1, No:2)" << endl;
             int choice;
             cin >> choice;
-            if (choice == 1)
+            if (choice == 1) {
+                InitBattle(player);
                 continue;
+            }
         }
         break;
     }
@@ -41,7 +43,7 @@ void BattleManager::InitBattle(Player* player)
         std::cout << "-------플레이어가 선턴입니다-------" << endl;
     }
     else {
-        std::cout << "-------" << m_enemy->GetName() << "이(가) 선턴입니다-------" << endl;
+        std::cout << "-------" << m_enemy.get()->GetName() << "이(가) 선턴입니다-------" << endl;
     }
 
     std::cout << "-&전투가 시작됩니다&-" << endl;
@@ -50,6 +52,8 @@ void BattleManager::InitBattle(Player* player)
 bool BattleManager::Battle()
 {
     while (1) {
+        m_player->DisplayStat();
+        m_enemy.get()->DisplayStat();
         if (turn == 0) {
             cout << "*플레이어 차례입니다.*" << endl;
             int choice;
@@ -63,7 +67,7 @@ bool BattleManager::Battle()
                 int itemIdx;
                 cout << "사용할 아이템 번호 입력: ";
                 cin >> itemIdx;
-                m_player->UseItem(itemIdx, m_enemy.get());
+                m_player->UseItem(itemIdx, m_player);
                 break;
             }
             case 2:
