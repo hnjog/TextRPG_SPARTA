@@ -79,18 +79,23 @@ void Player::AddExp(int exp)
 	m_experience += exp;
 	cout << GetName() << "은(는) " << exp << " 경험치를 얻었습니다." << endl;
 
-	while (m_experience >= m_level * 100) {
-		m_experience -= m_level * 100;
+	while (m_experience >= 100) {
+		m_experience -= 100;
 		m_level++;
+		if (m_level <= 10) {
+			int hpIncrease = 20;
+			int newMaxHp = GetMaxHp() + hpIncrease;
+			SetMaxHp(newMaxHp);
+			SetCurrentHp(newMaxHp);
 
-		int hpIncrease = 20;
-		int newMaxHp = GetMaxHp() + hpIncrease;
-		SetMaxHp(newMaxHp);
-		SetCurrentHp(newMaxHp);
+			int attackIncrease = 5;
+			int newAttack = GetAttack() + attackIncrease;
+			SetAttack(newAttack);
 
-		cout << GetName() << "의 레벨이 상승하였습니다."<<endl<< "현재 레벨: " << m_level << endl;
-		cout << "최대 체력 증가, hp가 회복되었습니다. " << endl 
-			<<"최대 체력: " << newMaxHp << endl;
+			cout << GetName() << "의 레벨이 상승하였습니다." << endl << "현재 레벨: " << m_level << endl;
+			cout << "최대 체력 증가, hp가 회복되었습니다. " << endl
+				<< "최대 체력: " << newMaxHp << endl;
+		}
 	}
 
 	cout << "현재 경험치: " << m_experience << " / " << m_level * 100 << endl;
