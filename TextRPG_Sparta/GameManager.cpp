@@ -17,13 +17,16 @@ GameManager& GameManager::Instance()
 
 void GameManager::InitGame()
 {
+	// 플레이어 초기화
+	InitPlayer();
+
 	// 상점 초기화
 	ShopManager::Instance().InitShop();
-	EnemySpawnManager::GetInstance().LoadFromDataManager(DataManager::GetInstance());
 
+	EnemySpawnManager::GetInstance().LoadFromDataManager(DataManager::GetInstance());
 }
 
-void GameManager::StartGame()
+void GameManager::InitPlayer()
 {
 	// 캐릭터 생성
 	string name;
@@ -46,11 +49,30 @@ void GameManager::StartGame()
 
 	player = new Player(name, stat);
 #endif
-	
+}
+
+bool GameManager::GetIsNameValid(const string& input)
+{
+	if (input.empty()) return false;
+
+	for (char c : input) {
+		if (isspace(static_cast<unsigned char>(c))) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+void GameManager::StartGame()
+{
+	InitGame();
 
 	// 플레이 선택
 	int opt = 0;
 	while (opt != -1) {
+		system("cls");
+
 		cout << "1. 전투\n2. 플레이어 확인\n3. 상점이용\n";
 		cout << "선택하세요(게임종료 -1): ";
 		cin >> opt;
@@ -71,16 +93,6 @@ void GameManager::StartGame()
 			break;
 		}
 	}
-}
 
-bool GameManager::GetIsNameValid(const string& input)
-{
-	if (input.empty()) return false;
-
-	for (char c : input) {
-		if (isspace(static_cast<unsigned char>(c))) {
-			return false;
-		}
-	}
-	return true;
+	delete player;
 }

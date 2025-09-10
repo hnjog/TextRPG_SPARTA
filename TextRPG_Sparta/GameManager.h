@@ -11,15 +11,15 @@ private:
     GameManager& operator=(const GameManager&) = delete;
 
 private:
-    //캐릭터 Character
-    //몬스터 vector<T>
     class Player* player;
     
-public:
-    void InitGame();
-    void StartGame();
-
 private:
+    void InitGame();
+
+    void InitPlayer();
     bool GetIsNameValid(const string& input);
+
+public:
+    void StartGame();
 };
 
