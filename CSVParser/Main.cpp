@@ -1,4 +1,4 @@
-﻿// mycsv2json.cpp : C++17, 단일 파일, 외부 라이브러리 없이 빌드 가능
+// mycsv2json.cpp : C++17, 단일 파일, 외부 라이브러리 없이 빌드 가능
 // 빌드 예: g++ -std=c++17 -O2 -o mycsv2json mycsv2json.cpp
 //        cl /std:c++17 /O2 mycsv2json.cpp
 #include <iostream>
@@ -567,7 +567,7 @@ int main(int argc, char** argv) {
 	Config cfg;
 	// 기본 설정(예시). config.json이 있으면 덮어씌움.
 	cfg.sheets = {
-		{"Item", SheetConf{ "A2", {"Idx","Name","Effect","Value","Price","IsConsumable","IsStackable"}}},
+		{"Item", SheetConf{ "A2", {"Idx","Name","Effect","Value","Price","IsConsumable","IsStackable","IsEquipable","EquipParts"}}},
 		{"Shop", SheetConf{ "A2", {"Name","ShopId","ItemIdxList","Stock"} }},
 		{"Enemy", SheetConf{ "A2", {"Idx","Name","BaseHp","BaseAttack","HpPerLevel","AttackPerLevel","DropGold","DropExp","DropItemIdx","DropItemChance"}}}
 	};

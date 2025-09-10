@@ -1,3 +1,6 @@
-Idx,Name,Effect,Value,Price,IsConsumable,IsStackable
-1,회복포션,Heal,50,10,o,o
-2,분노의영약,IncreaseAttack,10,15,o,o
+Idx,Name,Effect,Value,Price,IsConsumable,IsStackable,IsEquipable,EquipParts
+1,회복포션,Heal_Instance,50,10,o,o,x,
+2,분노의영약,IncreaseAttack,10,15,o,o,x,
+3,연습용 목검,IncreaseAttack,10,30,x,x,o,Weapon
+4,기사의 장검,IncreaseAttack,30,60,x,x,o,Weapon
+5,드레곤 슬레이어,IncreaseAttack,50,120,x,x,o,Weapon

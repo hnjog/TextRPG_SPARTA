@@ -1,12 +1,12 @@
-﻿#include "HealEffect.h"
+#include "HealInstanceEffect.h"
 #include "Character/CharacterBase.h"
 
-std::string HealEffect::GetId()
+std::string Heal_InstanceEffect::GetId()
 {
-	return "Heal";
+	return "Heal_Instance";
 }
 
-bool HealEffect::Apply(EffectContext& effectContext)
+bool Heal_InstanceEffect::Apply(EffectContext& effectContext)
 {
 	CharacterBase* target = effectContext.target;
 	if (nullptr == target)
@@ -15,14 +15,24 @@ bool HealEffect::Apply(EffectContext& effectContext)
 	if (effectContext.value < 0)
 		return false;
 
+	if (effectContext.trigger != EffectTrigger::EFT_USE)
+		return false;
+
 	int targetMaxHp = target->GetMaxHp();
 	int targetCurrentHp = target->GetCurrentHp();
+
 	
 	int targetResultHp = targetCurrentHp + effectContext.value;
 	int HealAmount = (targetResultHp < targetMaxHp) ? effectContext.value : targetResultHp - targetMaxHp;
 	targetResultHp = min(targetResultHp, targetMaxHp);
 
 	std::cout <<  HealAmount << "만큼의 체력을 회복하였습니다!" << '\n';
+
+	if (targetCurrentHp >= targetMaxHp)
+		return false;
+
+	int targetResultHp = min(targetCurrentHp + effectContext.value, targetMaxHp);
+	
 	target->SetCurrentHp(targetResultHp);
 	std::cout << "현재 체력 : " << target->GetCurrentHp() << " / " << target->GetMaxHp() << '\n';
 

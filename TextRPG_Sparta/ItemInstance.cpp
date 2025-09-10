@@ -1,4 +1,4 @@
-﻿#include "ItemInstance.h"
+#include "ItemInstance.h"
 #include "EffectManager.h"
 #include "EffectDescriptor.h"
 #include"Character/CharacterBase.h"
@@ -10,7 +10,7 @@ ItemInstance::ItemInstance()
 {
 }
 
-ItemInstance::ItemInstance(int idx, const std::string& name, const std::string& effect, int value, int price, bool isConsumable, bool isStackable, int amount)
+ItemInstance::ItemInstance(int idx, const std::string& name, const std::string& effect, int value, int price, bool isConsumable, bool isStackable, bool isEquipable, ItemEquipParts equipParts, int amount)
 {
 	itemData.idx = idx;
 	itemData.name = name;
@@ -19,6 +19,8 @@ ItemInstance::ItemInstance(int idx, const std::string& name, const std::string& 
 	itemData.price = price;
 	itemData.isConsumable = isConsumable;
 	itemData.isStackable = isStackable;
+	itemData.isEquipable = isEquipable;
+	itemData.equipParts = equipParts;
 
 	if (true == itemData.isStackable)
 		stock = amount;
@@ -27,7 +29,11 @@ ItemInstance::ItemInstance(int idx, const std::string& name, const std::string& 
 }
 
 ItemInstance::ItemInstance(const ItemData& itemData, int amount)
-	:ItemInstance(itemData.idx,itemData.name,itemData.effect,itemData.value,itemData.price,itemData.isConsumable,itemData.isStackable,amount)
+	:ItemInstance(itemData.idx,itemData.name,itemData.effect,itemData.value,itemData.price,itemData.isConsumable,itemData.isStackable, itemData.isEquipable, itemData.equipParts,amount)
+{
+}
+
+ItemInstance::~ItemInstance()
 {
 }
 
@@ -50,6 +56,7 @@ bool ItemInstance::UseItem(CharacterBase* target)
 	EffectContext context;
 	context.target = target;
 	context.value = itemData.value;
+	context.trigger = EffectTrigger::EFT_USE; // default로 사용
 
 	std::unique_ptr<IEffect> effect = effectManager.Create(itemData.effect);
 	// 없는 effect

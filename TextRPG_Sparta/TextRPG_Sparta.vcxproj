@@ -130,8 +130,9 @@
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemySpawnManager.cpp" />
+    <ClCompile Include="EquipItem.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="HealEffect.cpp" />
+    <ClCompile Include="HealInstanceEffect.cpp" />
     <ClCompile Include="IncreaseAttackEffect.cpp" />
     <ClCompile Include="ItemInstance.cpp" />
     <ClCompile Include="ItemManager.cpp" />
@@ -150,8 +151,10 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyData.h" />
     <ClInclude Include="EnemySpawnManager.h" />
+    <ClInclude Include="EquipDesc.h" />
+    <ClInclude Include="EquipItem.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="HealEffect.h" />
+    <ClInclude Include="HealInstanceEffect.h" />
     <ClInclude Include="IncreaseAttackEffect.h" />
     <ClInclude Include="ItemData.h" />
     <ClInclude Include="ItemInstance.h" />
