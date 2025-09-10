@@ -18,12 +18,19 @@ bool BattleManager::StartBattle(Player* player)
     while (1) {
         result = Battle();
         if (result == 1) {
-            std::cout << "계속 탐사하시겠습니까?(Yes:1, No:2)" << endl;
-            int choice;
-            cin >> choice;
-            if (choice == 1) {
-                InitBattle(player);
-                continue;
+            if (bossStage) {
+                std::cout << "보스를 잡았습니다" << endl;
+                std::cout << "게임을 클리어하였습니다" << endl;
+                result = -1;
+            }
+            else {
+                std::cout << "계속 탐사하시겠습니까?(Yes:1, No:2)" << endl;
+                int choice;
+                cin >> choice;
+                if (choice == 1) {
+                    InitBattle(player);
+                    continue;
+                }
             }
         }
         break;
@@ -46,6 +53,10 @@ void BattleManager::InitBattle(Player* player)
 
     m_player = player;
     m_enemy = std::move(EnemySpawnManager::GetInstance().SpawnEnemy(dist2(rng), player->GetLevel()));
+    if (player->GetLevel() == 10) {
+        m_enemy->UpgradeBoss();
+        bossStage = true;
+    }
 
     
     std::cout << "=========================================" << endl;

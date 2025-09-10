@@ -11,6 +11,7 @@ private:
 	std::unique_ptr<Enemy> m_enemy;
 
 	int turn = 0;
+	bool bossStage = false;
 public:
 	static BattleManager& GetInstance();
 	BattleManager() = default;

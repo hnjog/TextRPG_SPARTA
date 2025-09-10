@@ -17,10 +17,12 @@ bool IncreaseAttackEffect::Apply(EffectContext& effectContext)
 
 	int targetAttack = target->GetAttack();
 
+
 	int AttackAmount = targetAttack + effectContext.value;
 	std::cout << effectContext.value << "만큼 공격력이 증가하였습니다" << '\n';
 	target->SetAttack(AttackAmount);
 	std::cout << "현재 공격력 : " << target->GetAttack() << '\n';
+
 
 	switch (effectContext.trigger)
 	{
@@ -39,6 +41,12 @@ bool IncreaseAttackEffect::Apply(EffectContext& effectContext)
 	default:
 		break;
 	}
+
+	int AttackAmount = targetAttack + effectContext.value;
+	std::cout << effectContext.value << "만큼 공격력이 증가하였습니다" << '\n';
+	target->SetAttack(AttackAmount);
+	std::cout << "현재 공격력 : " << target->GetAttack() << '\n';
+
 
 	return true;
 }

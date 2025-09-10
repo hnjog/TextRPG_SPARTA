@@ -28,8 +28,8 @@ void GameManager::StartGame()
 	// 캐릭터 생성
 	string name;
 	Stat stat = Stat();
-	stat.attack = 3;
-	stat.maxHp = 100;
+	stat.attack = 30;
+	stat.maxHp = 200;
 	stat.currentHp = stat.maxHp;
 
 #if DEV

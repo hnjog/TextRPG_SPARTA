@@ -49,6 +49,9 @@ public:
         SetCurrentHp(clamped);
     }
 
+    //보스로 변환 ( 보스 스폰할때 바로 호출 )
+    void UpgradeBoss();
+
 private:
     // 확률
     static int  RandRange(int l, int r);

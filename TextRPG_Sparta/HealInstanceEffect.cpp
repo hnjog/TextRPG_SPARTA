@@ -21,13 +21,17 @@ bool Heal_InstanceEffect::Apply(EffectContext& effectContext)
 	int targetMaxHp = target->GetMaxHp();
 	int targetCurrentHp = target->GetCurrentHp();
 
+
+	if (targetCurrentHp >= targetMaxHp)
+		return false;
+
+	int targetResultHp = min(targetCurrentHp + effectContext.value, targetMaxHp);
 	
 	int targetResultHp = targetCurrentHp + effectContext.value;
 	int HealAmount = (targetResultHp < targetMaxHp) ? effectContext.value : targetResultHp - targetMaxHp;
 	targetResultHp = min(targetResultHp, targetMaxHp);
 
 	std::cout <<  HealAmount << "만큼의 체력을 회복하였습니다!" << '\n';
-
 	if (targetCurrentHp >= targetMaxHp)
 		return false;
 
