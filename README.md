@@ -84,14 +84,18 @@ TextRPG_SPARTA
     ItemData 전반을 관리하고 ItemInstance를 생성해주는 클래스<br>
 
 - GameManager<br>
-  : 전반적인 시스템 초기화와 게임 진행을 담당
-  
 - BattleManager<br>	
+  :전투가 이뤄지는 클래스. 싱글톤으로 구성되어 get instance로 불러와서 startbattle을 호춝하면 된다
+   전투가 시작되면 적을 랜덤으로 생성하고 적과 플레이어의 사망상태를 계속 체크한다.
+   전투가 끝나면 이 상태로 게임을 끝낼지 이어할지 결정하는 클래스이다
 - ShopManager<br>
-  : 플레이어와 상점의 상호작용을 통해 아이템 거래를 관리
 - EnemySpawnManager<br>
 - CharacterBase<br>
+  :플레이어와 적들이 가지는 공통 스테이터스 혹은 공통으로 호출하는 함수들을 저장하는 클래스
+   isdead(), takedamage()로 서로 상호작용을 위한 혹은 상태 확인을 위한 함수들이 있다. 
 - Player<br>
+  :사용자가 직접 움직이는 개체이며 아이템 인스턴스를 벡터로 저장한다.
+   레벨업 기능과, 벡터배열에서 하나를 찾아서 아이템을 샂게한다거나 하는 여러 기능이 있다
 - Enemy<br>
 
 // TODO - 작업자 분들의 관련 클래스 내용 추가 희망!
