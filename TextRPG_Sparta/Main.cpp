@@ -19,8 +19,8 @@ int main()
 
     std::cout << "Hello World!\n";
 
+    // GameManager::InitGame() 안으로 오실래요 ?
     ItemManager::GetInstance().Init();
 
-    GameManager::Instance().InitGame();
     GameManager::Instance().StartGame();
 }

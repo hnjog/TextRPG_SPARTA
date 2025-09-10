@@ -31,65 +31,72 @@ void ShopManager::InitShop()
 /// </summary>
 void ShopManager::VisitShop(Player* player)
 {
-	int opt;
-	cout << "1. 아이템 구매\n2. 아이템 판매\n입력하세요(나가기 -1): ";
-	cin >> opt;
+	while (1) {
+		system("cls");
 
-	switch (opt)
-	{
-	case 1:
-		Sell(player);
-		break;
-	case 2:
-		Purchase(player);
-		break;
-	default:
-		break;
+		int opt;
+		cout << "1. 아이템 구매\n2. 아이템 판매\n입력하세요(나가기 -1): ";
+		cin >> opt;
+
+		switch (opt)
+		{
+		case -1:
+			return;
+		case 1:
+			Sell(player);
+			break;
+		case 2:
+			Purchase(player);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
 void ShopManager::Purchase(Player* player)
 {
-	cout << "플레이어의 아이템을 매입\n";
+	player->ShowInventory();
 }
 
 void ShopManager::Sell(Player* player)
 {
-	this->shop.PrintSellingItems();
+	int opt = 0, cnt;
+	while (true) {
+		this->shop.PrintSellingItems();
+		cout << "구매할 아이템 번호를 입력하세요(나가기 -1): ";
+		cin >> opt;
+		if (opt == -1) break;
 
-	int opt, cnt;
-	cout << "구매할 아이템 번호를 입력하세요(나가기 -1): ";
-	cin >> opt;
-	if (opt == -1) return;
+		cout << "구매할 아이템 개수를 입력하세요: ";
+		cin >> cnt;
 
-	cout << "구매할 아이템 개수를 입력하세요: ";
-	cin >> cnt;
+		// Check total price
+		auto price = this->shop.CheckPrice(opt, cnt);
 
-	// Check total price
-	auto price = this->shop.CheckPrice(opt, cnt);
+		if (price == -1) {
+			// ShopBase 자체 예외처리(에러메시지 출력)
+			continue;
+		}
 
-	if (price == -1) {
-		// ShopBase 자체 예외처리
-		return;
-	}
+		// Check player gold
+		if (player->getGold() < price)
+		{
+			cout << "보유한 골드가 부족하여 아이템을 구매할 수 없습니다.\n";
+			return;
+		}
 
-	// Check player gold
-	if (player->getGold() < price)
-	{
-		cout << "보유한 골드가 부족하여 아이템을 구매할 수 없습니다.\n";
-		return;
-}
-
-	auto receipt = shop.SellItem(opt, cnt);
+		auto receipt = shop.SellItem(opt, cnt);
 
 
 #if DEV
-	auto itemData = ItemManager::GetInstance().GetItemData(receipt.idx);
-	cout << itemData->name << "를(을) " << cnt << "개 구매하였습니다.\n";
+		auto itemData = ItemManager::GetInstance().GetItemData(receipt.idx);
+		cout << itemData->name << "를(을) " << cnt << "개 구매하였습니다.\n";
 #endif
 
-	// Add item && Use Gold
-	auto item = ItemManager::GetInstance().MakeItem(opt, cnt);
-	player->GetItem(item);
-	player->useGold(price);
+		// Add item && Use Gold
+		auto item = ItemManager::GetInstance().MakeItem(opt, cnt);
+		player->GetItem(item);
+		player->useGold(price);
+	}
 }

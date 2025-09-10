@@ -73,6 +73,23 @@ bool Player::PopItem(int idx, int stocks)
 	return false;
 }
 
+void Player::ShowInventory()
+{
+	cout << "----- 인벤토리 -----" << endl;
+	if (m_inventory.empty()) {
+		cout << "인벤토리가 비어 있습니다." << endl;
+	}
+	else {
+		for (size_t i = 0; i < m_inventory.size(); i++) {
+			ItemInstance* item = m_inventory[i];
+			cout << i + 1 << ". " << item->GetItemName()
+				<< " (가격: " << item->GetItemPrice()
+				<< ", 재고: " << (item->GetItemStock()) << ", idx: " << item->GetItemIdx() << ")"
+				<< endl;
+		}
+	}
+}
+
 void Player::AddExp(int exp)
 {
 
@@ -130,22 +147,13 @@ void Player::DisplayStat()
 	cout << "공격력: " << GetAttack() << endl;
 	cout << "경험치: " << m_experience << endl;
 	cout << "골드  : " << m_gold << endl;
-	cout << "----- 인벤토리 -----" << endl;
-	if (m_inventory.empty()) {
-		cout << "인벤토리가 비어 있습니다." << endl;
-	}
-	else {
-		for (size_t i = 0; i < m_inventory.size(); i++) {
-			ItemInstance* item = m_inventory[i];
-			cout << i + 1 << ". " << item->GetItemName()
-				<< " (가격: " << item->GetItemPrice()
-				<< ", 재고: " << (item->GetItemStock()) <<", idx: "<< item->GetItemIdx() << ")"
-				<< endl;
-		}
-	}
+	
+	ShowInventory();
 
 	cout << "=========================" << endl;
 }
+
+
 
 void Player::Attack(CharacterBase* target)
 {
