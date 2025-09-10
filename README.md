@@ -88,7 +88,7 @@ TextRPG_SPARTA
   
 - BattleManager<br>	
 - ShopManager<br>
-  : 플레이어와 상점의 상호작용을 통해 아이템을 거
+  : 플레이어와 상점의 상호작용을 통해 아이템 거래를 관리
 - EnemySpawnManager<br>
 - CharacterBase<br>
 - Player<br>
