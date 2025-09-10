@@ -11,7 +11,7 @@ public:
 
 	bool UseItem(class CharacterBase* target);
 	bool AddItemStock(int count);
-	bool removeItemStock(int count);
+	bool RemoveItemStock(int count);
 
 public:
 	inline int GetItemIdx() const { return itemData.idx; }
