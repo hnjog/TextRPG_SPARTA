@@ -1,0 +1,1 @@
+﻿[{"Idx":1,"Name":"회복포션","Effect":"Heal","Value":50,"Price":10,"IsConsumable":"o","IsStackable":"o"},{"Idx":2,"Name":"분노의영약","Effect":"IncreaseAttack","IsConsumable":"o","Price":15,"Value":10,"IsStackable":"o"}]
