@@ -78,3 +78,20 @@ DropResult Enemy::RollDrop() const
     }
     return dr;
 }
+
+void Enemy::UpgradeBoss()
+{
+    auto RandRange = [](int l, int r) {
+        static thread_local std::mt19937 rng{ std::random_device{}() };
+        std::uniform_int_distribution<int> dist(l, r);
+        return dist(rng);
+        };
+    float scalePercent = RandRange(100, 150) * 0.01;
+
+    std::cout << "업그레이드 수치 : " << scalePercent << "\n";
+
+    SetMaxHp(GetMaxHp() * scalePercent);
+    SetCurrentHp(GetCurrentHp() * scalePercent);
+    SetAttack(GetAttack() * scalePercent);
+    SetName("[보스]" + enemyData.name);
+}
