@@ -60,17 +60,28 @@ bool Player::PopItem(int idx, int stocks)
 		return invItem->GetItemIdx() == idx;
 		});
 
-	if (it != m_inventory.end()) {
-		if ((*it)->isStackableItem()) {
-			//(*it)->subtractItemStock();
-		}
-		if ((*it)->GetItemStock() <= 0) {
-			delete* it;
-			m_inventory.erase(it);
-		}
-		return true;
+	if (it == m_inventory.end()) {
+		cout << "ERROR : 보유한 아이템이 아닙니다.\n";
+		return false;
+	} 
+
+	if ((*it)->GetItemStock() < stocks) {
+		cout << "ERROR : 해당 아이템의 보유 수량이 부족합니다.\n";
+		return false;
+	}	
+	
+	// 스택어블이 아니거나 가진 수량전부 파매하는 경우 그냥 삭제
+	if ((*it)->isStackableItem() == false || (*it)->GetItemStock() == stocks) {
+		delete* it;
+		m_inventory.erase(it);
 	}
-	return false;
+	else // 그 외에는 재고 감소 
+	{
+		//subtrack item stocks
+	}
+
+	return true;
+	
 }
 
 void Player::ShowInventory()
