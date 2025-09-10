@@ -84,8 +84,11 @@ TextRPG_SPARTA
     ItemData 전반을 관리하고 ItemInstance를 생성해주는 클래스<br>
 
 - GameManager<br>
+  : 전반적인 시스템 초기화와 게임 진행을 담당
+  
 - BattleManager<br>	
 - ShopManager<br>
+  : 플레이어와 상점의 상호작용을 통해 아이템을 거
 - EnemySpawnManager<br>
 - CharacterBase<br>
 - Player<br>
