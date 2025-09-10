@@ -63,7 +63,7 @@ TextRPG_SPARTA
     |   ShopManager               // 상점 총괄 Manager
     |   
     +---Character
-    |       CharacterBase.h
+    |       CharacterBase.h	// player, enemy의 베이스 클래스
     |       Player                // Player Class - Inventory, Gold,Exp, Level 관련 
 ```
 
@@ -82,6 +82,17 @@ TextRPG_SPARTA
 - ItemManager<br>
   : ItemData를 DataManager에게 넘겨받고<br>
     ItemData 전반을 관리하고 ItemInstance를 생성해주는 클래스<br>
+
+- GameManager<br>
+  : 전반적인 시스템 초기화와 게임 진행을 담당
+  
+- BattleManager<br>	
+- ShopManager<br>
+  : 플레이어와 상점의 상호작용을 통해 아이템을 거
+- EnemySpawnManager<br>
+- CharacterBase<br>
+- Player<br>
+- Enemy<br>
 
 // TODO - 작업자 분들의 관련 클래스 내용 추가 희망!
 
