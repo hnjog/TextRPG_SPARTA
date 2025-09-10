@@ -39,12 +39,15 @@ bool BattleManager::StartBattle(Player* player)
 
 void BattleManager::InitBattle(Player* player)
 {
-    m_player = player;
-    m_enemy = std::move(EnemySpawnManager::GetInstance().SpawnEnemy(1, player->GetLevel()));
-
     std::mt19937 rng(std::random_device{}());
     std::uniform_int_distribution<int> dist(0, 1);
     turn = dist(rng); // 0 또는 1
+    std::uniform_int_distribution<int> dist2(1,3);
+
+    m_player = player;
+    m_enemy = std::move(EnemySpawnManager::GetInstance().SpawnEnemy(dist2(rng), player->GetLevel()));
+
+    
     std::cout << "=========================================" << endl;
     if (turn == 0) {
         std::cout << "-------플레이어가 선턴입니다-------" << endl;
