@@ -5,7 +5,6 @@
 #endif
 
 #include "GameManager.h"
-#include "ItemManager.h"
 
 using namespace std;
 
@@ -17,8 +16,5 @@ int main()
     SetConsoleCP(CP_UTF8);
 #endif
 
-    ItemManager::GetInstance().Init();
-
-    GameManager::Instance().InitGame();
     GameManager::Instance().StartGame();
 }

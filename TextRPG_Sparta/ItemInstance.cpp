@@ -86,3 +86,22 @@ bool ItemInstance::AddItemStock(int count)
 	stock += count;
 	return true;
 }
+
+bool ItemInstance::RemoveItemStock(int count)
+{
+	// 음수로 제거하는 것은 의도되지 않았습니다
+	if (count <= 0)
+		return false;
+
+	// 이미 stock이 0이하
+	if (stock <= 0)
+		return false;
+
+	stock -= count;
+
+	// Stock이 음수가 되면 안되므로
+	if (stock < 0)
+		stock = 0;
+
+	return true;
+}

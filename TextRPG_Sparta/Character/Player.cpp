@@ -60,17 +60,48 @@ bool Player::PopItem(int idx, int stocks)
 		return invItem->GetItemIdx() == idx;
 		});
 
-	if (it != m_inventory.end()) {
-		if ((*it)->isStackableItem()) {
-			//(*it)->subtractItemStock();
-		}
-		if ((*it)->GetItemStock() <= 0) {
-			delete* it;
-			m_inventory.erase(it);
-		}
-		return true;
+	// 아이템 탐색 실패
+	if (it == m_inventory.end()) {
+		cout << "ERROR : 보유한 아이템이 아닙니다.\n";
+		return false;
+	} 
+
+	// 아이템 재고 부족
+	if ((*it)->GetItemStock() < stocks) {
+		cout << "ERROR : 해당 아이템의 보유 수량이 부족합니다.\n";
+		return false;
+	}	
+	
+	// 스택어블이 아니거나 가진 수량전부 파매하는 경우 그냥 삭제
+	if ((*it)->isStackableItem() == false || (*it)->GetItemStock() == stocks) {
+		delete* it;
+		m_inventory.erase(it);
 	}
-	return false;
+	else // 그 외에는 재고 감소 
+	{
+		//subtract item stocks
+		(*it)->RemoveItemStock(stocks);
+	}
+
+	return true;
+	
+}
+
+void Player::ShowInventory()
+{
+	cout << "----- 인벤토리 -----" << endl;
+	if (m_inventory.empty()) {
+		cout << "인벤토리가 비어 있습니다." << endl;
+	}
+	else {
+		for (size_t i = 0; i < m_inventory.size(); i++) {
+			ItemInstance* item = m_inventory[i];
+			cout << i + 1 << ". " << item->GetItemName()
+				<< " (가격: " << item->GetItemPrice()
+				<< ", 재고: " << (item->GetItemStock()) << ", idx: " << item->GetItemIdx() << ")"
+				<< endl;
+		}
+	}
 }
 
 void Player::AddExp(int exp)
@@ -94,7 +125,9 @@ void Player::AddExp(int exp)
 
 			cout << GetName() << "의 레벨이 상승하였습니다." << endl << "현재 레벨: " << m_level << endl;
 			cout << "최대 체력 증가, hp가 회복되었습니다. " << endl
-				<< "최대 체력: " << newMaxHp << endl;
+				<< "최대 체력: " << GetMaxHp() << endl;
+			cout << "공격력이 증가되었습니다. " << endl
+				<< "공격력: " << GetAttack() << endl;
 		}
 	}
 
@@ -135,22 +168,13 @@ void Player::DisplayStat()
 	cout << "공격력: " << GetAttack() << endl;
 	cout << "경험치: " << m_experience << endl;
 	cout << "골드  : " << m_gold << endl;
-	cout << "----- 인벤토리 -----" << endl;
-	if (m_inventory.empty()) {
-		cout << "인벤토리가 비어 있습니다." << endl;
-	}
-	else {
-		for (size_t i = 0; i < m_inventory.size(); i++) {
-			ItemInstance* item = m_inventory[i];
-			cout << i + 1 << ". " << item->GetItemName()
-				<< " (가격: " << item->GetItemPrice()
-				<< ", 재고: " << (item->GetItemStock()) <<", idx: "<< item->GetItemIdx() << ")"
-				<< endl;
-		}
-	}
+	
+	ShowInventory();
 
 	cout << "=========================" << endl;
 }
+
+
 
 void Player::Attack(CharacterBase* target)
 {

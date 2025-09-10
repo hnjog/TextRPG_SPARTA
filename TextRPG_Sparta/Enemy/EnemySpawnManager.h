@@ -6,7 +6,7 @@
 #include <algorithm>
 #include "Enemy.h"
 #include "EnemyData.h"
-#include "DataManager.h"   
+#include "../DataManager.h"   
 
 class EnemySpawnManager {
 public:
