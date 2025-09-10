@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include"ItemData.h"
 
@@ -11,6 +11,7 @@ public:
 
 	bool UseItem(class CharacterBase* target);
 	bool AddItemStock(int count);
+	bool removeItemStock(int count);
 
 public:
 	inline int GetItemIdx() const { return itemData.idx; }
