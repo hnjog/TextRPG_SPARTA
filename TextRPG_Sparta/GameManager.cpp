@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <conio.h>
 
 #include "GameManager.h"
 #include "ShopManager.h"
@@ -6,6 +7,8 @@
 #include "EnemySpawnManager.h"
 #include "DataManager.h"
 #include "Character/Player.h"
+
+
 
 using namespace std;
 
@@ -85,6 +88,8 @@ void GameManager::StartGame()
 			break;
 		case 2:
 			player->DisplayStat();
+			cout << "플레이어 스탯확인창을 닫기 위해 아무 키나 누르세요.\n";
+			_getch();
 			break;
 		case 3:
 			ShopManager::Instance().VisitShop(this->player);
