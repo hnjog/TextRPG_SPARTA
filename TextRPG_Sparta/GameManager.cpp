@@ -6,8 +6,8 @@
 #include "BattleManager.h"
 #include "EnemySpawnManager.h"
 #include "DataManager.h"
+#include "ItemManager.h"
 #include "Character/Player.h"
-
 
 
 using namespace std;
@@ -24,6 +24,7 @@ void GameManager::InitGame()
 	InitPlayer();
 
 	// 상점 초기화
+	ItemManager::GetInstance().Init();
 	ShopManager::Instance().InitShop();
 
 	EnemySpawnManager::GetInstance().LoadFromDataManager(DataManager::GetInstance());
