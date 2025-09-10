@@ -59,6 +59,7 @@ void ShopManager::Purchase(Player* player)
 	int opt = 0, cnt;
 	while (true) {
 		player->ShowInventory();
+
 		cout << "판매할 아이템 번호를 입력하세요(나가기 -1): ";
 		cin >> opt;
 		if (opt == -1) break;
@@ -70,6 +71,10 @@ void ShopManager::Purchase(Player* player)
 		if (player->PopItem(opt, cnt)) {
 			auto price = itemData->price * 0.6 * cnt;
 
+			// 재고 인수
+			this->shop.AddItem(opt, cnt);
+
+			// 대금 지불 
 			player->addGold(price);
 		}
 	}

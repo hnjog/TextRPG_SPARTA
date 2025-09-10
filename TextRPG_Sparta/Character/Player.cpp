@@ -60,11 +60,13 @@ bool Player::PopItem(int idx, int stocks)
 		return invItem->GetItemIdx() == idx;
 		});
 
+	// 아이템 탐색 실패
 	if (it == m_inventory.end()) {
 		cout << "ERROR : 보유한 아이템이 아닙니다.\n";
 		return false;
 	} 
 
+	// 아이템 재고 부족
 	if ((*it)->GetItemStock() < stocks) {
 		cout << "ERROR : 해당 아이템의 보유 수량이 부족합니다.\n";
 		return false;
@@ -77,7 +79,8 @@ bool Player::PopItem(int idx, int stocks)
 	}
 	else // 그 외에는 재고 감소 
 	{
-		//subtrack item stocks
+		//subtract item stocks
+		(*it)->RemoveItemStock(stocks);
 	}
 
 	return true;
