@@ -38,7 +38,7 @@ void GameManager::StartGame()
 	cout << "플레이어 이름을 입력하세요: ";
 	getline(cin, name);
 
-	while (GetIsNameValid(name)) {
+	while (GetIsNameValid(name) || name.empty()) {
 		cout << "[ERROR] 플레이어 이름에 공백을 포함할 수 없습니다.\n";
 		cout << "플레이어 이름을 입력하세요: ";
 		getline(cin, name);
