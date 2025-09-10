@@ -1,4 +1,4 @@
-# TextRPG_SPARTA
+﻿# TextRPG_SPARTA
 
 ## 프로젝트 소개
 
@@ -90,9 +90,14 @@ TextRPG_SPARTA
 - ShopManager<br>
   : 플레이어와 상점의 상호작용을 통해 아이템 거래를 관리
 - EnemySpawnManager<br>
+    BattleManger 에서 Index와 level 값을 받아와 Enemy객체 반환
 - CharacterBase<br>
 - Player<br>
 - Enemy<br>
+  : CharacterBase 에서 상속받아 Enemy 클래스 생성<br>
+    Enemy 생성자에서 enemyData를 받고 레벨에 따른 스탯 초기화<br>
+    Attack/TakeDamage 함수로 Enemy 공격/피격 정의<br>
+    
 
 // TODO - 작업자 분들의 관련 클래스 내용 추가 희망!
 

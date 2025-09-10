@@ -1,7 +1,7 @@
 ﻿#include "Character/Player.h"
-#include "Enemy.h"
+#include "Enemy/Enemy.h"
 #include "ItemManager.h"
-#include "EnemySpawnManager.h"
+#include "Enemy/EnemySpawnManager.h"
 #include "BattleManager.h"
 #include <iostream>
 #include <random>

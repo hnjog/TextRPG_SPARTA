@@ -4,7 +4,7 @@
 #include "GameManager.h"
 #include "ShopManager.h"
 #include "BattleManager.h"
-#include "EnemySpawnManager.h"
+#include "Enemy/EnemySpawnManager.h"
 #include "DataManager.h"
 #include "ItemManager.h"
 #include "Character/Player.h"

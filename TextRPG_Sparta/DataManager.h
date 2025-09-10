@@ -7,7 +7,7 @@
 
 #include "ItemData.h"
 #include "ShopData.h"
-#include "EnemyData.h"
+#include "Enemy/EnemyData.h"
 
 class DataManager {
 public:

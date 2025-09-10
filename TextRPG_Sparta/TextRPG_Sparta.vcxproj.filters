@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -75,13 +75,19 @@
     <ClCompile Include="BattleManager.cpp">
       <Filter>BattleManager</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="ShopManager.cpp">
       <Filter>GameManager</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="EnemySpawnManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\Enemy.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\EnemySpawnManager.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,16 +140,25 @@
     <ClInclude Include="BattleManager.h">
       <Filter>BattleManager</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="ShopManager.h">
       <Filter>GameManager</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="EnemyData.h">
-      <Filter>Enemy</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EnemySpawnManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\EnemyData.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\EnemySpawnManager.h">
       <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>

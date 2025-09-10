@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include "EnemyData.h"
-#include "Character/CharacterBase.h"
+#include "../Character/CharacterBase.h"
 
 struct DropResult {
     int gold = 0;
