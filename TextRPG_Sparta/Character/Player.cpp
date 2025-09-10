@@ -80,9 +80,9 @@ void Player::AddExp(int exp)
 	cout << GetName() << "은(는) " << exp << " 경험치를 얻었습니다." << endl;
 
 	while (m_experience >= 100) {
-		m_experience -= 100;
-		m_level++;
-		if (m_level <= 10) {
+		m_experience -= 100;		
+		if (m_level < 10) {
+			m_level++;
 			int hpIncrease = 20;
 			int newMaxHp = GetMaxHp() + hpIncrease;
 			SetMaxHp(newMaxHp);
