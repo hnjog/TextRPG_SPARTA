@@ -30,7 +30,7 @@ void ShopBase::PrintSellingItems()
 	cout << "========================================" << endl;
 }
 
-bool ShopBase::AddItem(int itemID, int count)
+bool ShopBase::AddItem(int idx, int count)
 {
 	if (count <= 0)//1개 이상 추가 필요
 	{
@@ -38,19 +38,19 @@ bool ShopBase::AddItem(int itemID, int count)
 		return false;
 	}
 
-	sellList[itemID] += count;
+	sellList[idx] += count;
 
 	return true;
 }
 
-bool ShopBase::AddItemRange(vector<int> itemIDList, vector<int> countList)
+bool ShopBase::AddItemRange(vector<int> idxList, vector<int> countList)
 {
-	int length = itemIDList.size();
+	int length = idxList.size();
 
 	//두 vector의 길이가 서로 불일치
 	if (length == 0 || length != countList.size())
 	{
-		cout << "ERROR : itemIDList와 countList의 size가 0이거나 불일치합니다." << endl;
+		cout << "ERROR : idxList와 countList의 size가 0이거나 불일치합니다." << endl;
 		return false;
 	}
 
@@ -64,16 +64,16 @@ bool ShopBase::AddItemRange(vector<int> itemIDList, vector<int> countList)
 	//지정한 아이템을 해당 개수만큼 추가
 	for (int iNum = 0; iNum < length; iNum++)
 	{
-		sellList[itemIDList[iNum]] += countList[iNum];
+		sellList[idxList[iNum]] += countList[iNum];
 	}
 
 	return true;
 }
 
-bool ShopBase::RemoveItem(int itemID, int count)
+bool ShopBase::RemoveItem(int idx, int count)
 {
 	//판매중인 아이템이 아님
-	if (sellList.find(itemID) == sellList.end() || sellList[itemID] == 0)
+	if (sellList.find(idx) == sellList.end() || sellList[idx] == 0)
 	{
 		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
 		return false;
@@ -87,21 +87,21 @@ bool ShopBase::RemoveItem(int itemID, int count)
 	}
 
 	//개수 부족
-	if (sellList[itemID] < count)
+	if (sellList[idx] < count)
 	{
 		cout << "ERROR : 제거할 개수가 판매중인 개수보다 많습니다." << endl;
 		return false;
 	}
 
 	//제거 성공
-	sellList[itemID] -= count;
+	sellList[idx] -= count;
 	return false;
 }
 
-int ShopBase::CheckPrice(int itemID, int count)
+int ShopBase::CheckPrice(int idx, int count)
 {
 	//올바른 아이템 번호가 아님
-	const ItemData* itemData = ItemManager::GetInstance().GetItemData(itemID);
+	const ItemData* itemData = ItemManager::GetInstance().GetItemData(idx);
 	if (itemData == nullptr)
 	{
 		cout << "ERROR : 아이템 번호를 확인해주세요." << endl;
@@ -109,7 +109,7 @@ int ShopBase::CheckPrice(int itemID, int count)
 	}
 
 	//판매중인 아이템이 아님
-	if (sellList.find(itemID) == sellList.end() || sellList[itemID] == 0)
+	if (sellList.find(idx) == sellList.end() || sellList[idx] == 0)
 	{
 		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
 		return -1;
@@ -123,7 +123,7 @@ int ShopBase::CheckPrice(int itemID, int count)
 	}
 
 	//구매하려는 개수가 재고보다 많음
-	if (sellList[itemID] < count)
+	if (sellList[idx] < count)
 	{
 		cout << "ERROR : 구매할 개수가 판매중인 개수보다 많습니다." << endl;
 		return -1;
@@ -133,12 +133,12 @@ int ShopBase::CheckPrice(int itemID, int count)
 	return itemData->price * count;
 }
 
-SellItemData ShopBase::SellItem(int itemID, int count)
+SellItemData ShopBase::SellItem(int idx, int count)
 {
 	SellItemData sellItemData;
 
 	//올바른 아이템 번호가 아님
-	const ItemData* itemData = ItemManager::GetInstance().GetItemData(itemID);
+	const ItemData* itemData = ItemManager::GetInstance().GetItemData(idx);
 	if (itemData == nullptr)
 	{
 		cout << "ERROR : 아이템 번호를 확인해주세요." << endl;
@@ -146,7 +146,7 @@ SellItemData ShopBase::SellItem(int itemID, int count)
 	}
 
 	//판매중인 아이템이 아님
-	if (sellList.find(itemID) == sellList.end() || sellList[itemID] == 0)
+	if (sellList.find(idx) == sellList.end() || sellList[idx] == 0)
 	{
 		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
 		return sellItemData;
@@ -160,17 +160,59 @@ SellItemData ShopBase::SellItem(int itemID, int count)
 	}
 
 	//구매하려는 개수가 재고보다 많음
-	if (sellList[itemID] < count)
+	if (sellList[idx] < count)
 	{
 		cout << "ERROR : 구매할 개수가 판매중인 개수보다 많습니다." << endl;
 		return sellItemData;
 	}
 
 	//판매 처리
-	sellList[itemID] -= count;
+	sellList[idx] -= count;
 
 	sellItemData.idx = itemData->idx;
 	sellItemData.price = itemData->price;
 	sellItemData.stocks = count;
 	return sellItemData;
+}
+
+int ShopBase::CheckPriceAndSellItem(SellItemData& sellItemData, int idx, int count)
+{
+	//올바른 아이템 번호가 아님
+	const ItemData* itemData = ItemManager::GetInstance().GetItemData(idx);
+	if (itemData == nullptr)
+	{
+		cout << "ERROR : 아이템 번호를 확인해주세요." << endl;
+		return -1;
+	}
+
+	//판매중인 아이템이 아님
+	if (sellList.find(idx) == sellList.end() || sellList[idx] == 0)
+	{
+		cout << "ERROR : 판매중인 아이템이 아닙니다." << endl;
+		return -1;
+	}
+
+	//구매하려는 개수가 0 이하
+	if (count <= 0)
+	{
+		cout << "ERROR : 구매할 개수가 0 이하입니다." << endl;
+		return -1;
+	}
+
+	//구매하려는 개수가 재고보다 많음
+	if (sellList[idx] < count)
+	{
+		cout << "ERROR : 구매할 개수가 판매중인 개수보다 많습니다." << endl;
+		return -1;
+	}
+
+	//판매 처리
+	sellList[idx] -= count;
+
+	sellItemData.idx = itemData->idx;
+	sellItemData.price = itemData->price;
+	sellItemData.stocks = count;
+
+	//가격 계산하고 반환
+	return itemData->price * count;
 }

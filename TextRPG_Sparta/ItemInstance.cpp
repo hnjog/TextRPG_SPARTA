@@ -3,6 +3,7 @@
 #include "EffectDescriptor.h"
 #include"Character/CharacterBase.h"
 #include<memory>
+#include<iostream>
 
 ItemInstance::ItemInstance()
 	:stock(0)
@@ -39,11 +40,15 @@ ItemInstance::~ItemInstance()
 bool ItemInstance::UseItem(CharacterBase* target)
 {
 	if (nullptr == target)
+	{
+		std::cout << "아이템 사용 대상이 존재하지 않습니다!" << '\n';
 		return false;
+	}
 
 	if (true == itemData.isConsumable&&
 		stock < 1)
 	{
+		std::cout << "아이템 개수가 모자랍니다!" << '\n';
 		return false;
 	}
 
@@ -60,9 +65,11 @@ bool ItemInstance::UseItem(CharacterBase* target)
 
 	if (true == effect->Apply(context))
 	{
+		std::cout << itemData.name << "의 사용에 성공하였습니다!" << '\n';
 		if (true == itemData.isConsumable)
 		{
 			stock--;
+			std::cout << itemData.name << "의 남은 개수 : " << stock << '\n';
 		}
 
 		return true;

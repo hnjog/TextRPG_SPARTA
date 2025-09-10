@@ -9,7 +9,8 @@ EnemySpawnManager& EnemySpawnManager::GetInstance() {
 //
 int EnemySpawnManager::LoadFromDataManager(DataManager& dm)
 {
-    std::vector<EnemyData> list;
+    
+    std::vector<EnemyData> list = dm.TakeEnemyDatas();
 
     // 벡터 index 데이터 index 맞추기 (1부터 시작)
     int maxIdx = -1;

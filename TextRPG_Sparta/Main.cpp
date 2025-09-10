@@ -17,8 +17,6 @@ int main()
     SetConsoleCP(CP_UTF8);
 #endif
 
-    std::cout << "Hello World!\n";
-
     ItemManager::GetInstance().Init();
 
     GameManager::Instance().InitGame();

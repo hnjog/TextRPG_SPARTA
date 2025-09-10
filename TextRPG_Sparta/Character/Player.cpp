@@ -44,23 +44,33 @@ void Player::GetItem(ItemInstance* item)
 			(*it)->AddItemStock(item->GetItemStock());
 		} 
 		else {
-			// 이터레이터 못찾으면 일단 삽입
 			m_inventory.push_back(item);
-
-			// 소팅할까요?
-			/*sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
-				return A->GetItemName() < B->GetItemName();
-				});*/
 		}
 
 	}	
 	else {
 		m_inventory.push_back(item);
-		//sort(m_inventory.begin(), m_inventory.end(), [](const ItemInstance* A, const ItemInstance* B) {
-		//	return A->GetItemName() < B->GetItemName();
-		//	});
 	} 
 	cout << item->GetItemName() << "를(을) 획득하였습니다" << endl;
+}
+
+bool Player::PopItem(int idx, int stocks)
+{
+	auto it = find_if(m_inventory.begin(), m_inventory.end(), [idx](const ItemInstance* invItem) {
+		return invItem->GetItemIdx() == idx;
+		});
+
+	if (it != m_inventory.end()) {
+		if ((*it)->isStackableItem()) {
+			//(*it)->subtractItemStock();
+		}
+		if ((*it)->GetItemStock() <= 0) {
+			delete* it;
+			m_inventory.erase(it);
+		}
+		return true;
+	}
+	return false;
 }
 
 void Player::AddExp(int exp)
@@ -69,21 +79,28 @@ void Player::AddExp(int exp)
 	m_experience += exp;
 	cout << GetName() << "은(는) " << exp << " 경험치를 얻었습니다." << endl;
 
-	while (m_experience >= m_level * 10) {
-		m_experience -= m_level * 10;
-		m_level++;
+	while (m_experience >= 100) {
+		m_experience -= 100;		
+		if (m_level < 10) {
+			m_level++;
+			int hpIncrease = 20;
+			int newMaxHp = GetMaxHp() + hpIncrease;
+			SetMaxHp(newMaxHp);
+			SetCurrentHp(newMaxHp);
 
-		int hpIncrease = 10;
-		int newMaxHp = GetMaxHp() + hpIncrease;
-		SetMaxHp(newMaxHp);
-		SetCurrentHp(newMaxHp);
+			int attackIncrease = 5;
+			int newAttack = GetAttack() + attackIncrease;
+			SetAttack(newAttack);
 
-		cout << GetName() << "의 레벨이 상승하였습니다."<<endl<< "현재 레벨: " << m_level << endl;
-		cout << "최대 체력 증가, hp가 회복되었습니다. " << endl 
-			<<"최대 체력: " << newMaxHp << endl;
+			cout << GetName() << "의 레벨이 상승하였습니다." << endl << "현재 레벨: " << m_level << endl;
+			cout << "최대 체력 증가, hp가 회복되었습니다. " << endl
+				<< "최대 체력: " << GetMaxHp() << endl;
+			cout << "공격력이 회복되었습니다. " << endl
+				<< "공격력: " << GetAttack() << endl;
+		}
 	}
 
-	cout << "현재 경험치: " << m_experience << " / " << m_level * 10 << endl;
+	cout << "현재 경험치: " << m_experience << " / " << m_level * 100 << endl;
 
 }
 
@@ -114,12 +131,12 @@ bool Player::useGold(int gold)
 void Player::DisplayStat()
 {
 	cout << "===== Player Status =====" << endl;
-	cout << "이름       : " << GetName() << endl;
-	cout << "Level	    : " << m_level << endl;
-	cout << "HP	        : " << GetCurrentHp() << " / " << GetMaxHp() << endl;
-	cout << "공격력     : " << GetAttack() << endl;
-	cout << "경험치     : " << m_experience << endl;
-	cout << "골드       : " << m_gold << endl;
+	cout << "이름  : " << GetName() << endl;
+	cout << "Level : " << m_level << endl;
+	cout << "HP    : " << GetCurrentHp() << " / " << GetMaxHp() << endl;
+	cout << "공격력: " << GetAttack() << endl;
+	cout << "경험치: " << m_experience << endl;
+	cout << "골드  : " << m_gold << endl;
 	cout << "----- 인벤토리 -----" << endl;
 	if (m_inventory.empty()) {
 		cout << "인벤토리가 비어 있습니다." << endl;
@@ -129,7 +146,7 @@ void Player::DisplayStat()
 			ItemInstance* item = m_inventory[i];
 			cout << i + 1 << ". " << item->GetItemName()
 				<< " (가격: " << item->GetItemPrice()
-				<< ", 재고: " << (item->GetItemStock()) << ")"
+				<< ", 재고: " << (item->GetItemStock()) <<", idx: "<< item->GetItemIdx() << ")"
 				<< endl;
 		}
 	}

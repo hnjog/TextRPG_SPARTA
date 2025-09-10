@@ -1,8 +1,10 @@
-#include <iostream>
+﻿#include <iostream>
 
 #include "GameManager.h"
 #include "ShopManager.h"
-
+#include "BattleManager.h"
+#include "EnemySpawnManager.h"
+#include "DataManager.h"
 #include "Character/Player.h"
 
 using namespace std;
@@ -17,7 +19,7 @@ void GameManager::InitGame()
 {
 	// 상점 초기화
 	ShopManager::Instance().InitShop();
-
+	EnemySpawnManager::GetInstance().LoadFromDataManager(DataManager::GetInstance());
 
 }
 
@@ -27,14 +29,21 @@ void GameManager::StartGame()
 	string name;
 	Stat stat = Stat();
 	stat.attack = 30;
-	stat.maxHp = 100;
+	stat.maxHp = 200;
 	stat.currentHp = stat.maxHp;
 
 #if DEV
 	player = new Player("player", stat);
 #elif Build
 	cout << "플레이어 이름을 입력하세요: ";
-	cin >> name;
+	getline(cin, name);
+
+	while (GetIsNameValid(name) == false) {
+		cout << "[ERROR] 플레이어 이름에 공백을 포함할 수 없습니다.\n";
+		cout << "플레이어 이름을 입력하세요: ";
+		getline(cin, name);
+	}
+
 	player = new Player(name, stat);
 #endif
 	
@@ -49,12 +58,14 @@ void GameManager::StartGame()
 		switch (opt)
 		{	
 		case 1:
+			if(!BattleManager::GetInstance().StartBattle(player))
+				return;
 			break;
 		case 2:
 			player->DisplayStat();
 			break;
 		case 3:
-			UseShop();
+			ShopManager::Instance().VisitShop(this->player);
 			break;
 		default:
 			break;
@@ -62,7 +73,14 @@ void GameManager::StartGame()
 	}
 }
 
-void GameManager::UseShop()
+bool GameManager::GetIsNameValid(const string& input)
 {
-	ShopManager::Instance().VisitShop(this->player);
+	if (input.empty()) return false;
+
+	for (char c : input) {
+		if (isspace(static_cast<unsigned char>(c))) {
+			return false;
+		}
+	}
+	return true;
 }

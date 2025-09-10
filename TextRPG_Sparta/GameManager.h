@@ -20,8 +20,6 @@ public:
     void StartGame();
 
 private:
-    void Battle();
-    void UseShop();
-    //void ShowInventory();
+    bool GetIsNameValid(const string& input);
 };
 
