@@ -11,12 +11,13 @@ BattleManager& BattleManager::GetInstance() {
     return instance;
 }
 
-void BattleManager::StartBattle(Player* player)
+bool BattleManager::StartBattle(Player* player)
 {
     InitBattle(player);
-
+    int result;
     while (1) {
-        if (Battle()) {
+        result = Battle();
+        if (result == 1) {
             std::cout << "계속 탐사하시겠습니까?(Yes:1, No:2)" << endl;
             int choice;
             cin >> choice;
@@ -28,16 +29,25 @@ void BattleManager::StartBattle(Player* player)
         break;
     }
     EndBattle();
+
+    if (result == -1) {
+        return false;
+    }
+
+    return true;
 }
 
 void BattleManager::InitBattle(Player* player)
 {
-    m_player = player;
-    m_enemy = std::move(EnemySpawnManager::GetInstance().SpawnEnemy(1, player->GetLevel()));
-
     std::mt19937 rng(std::random_device{}());
     std::uniform_int_distribution<int> dist(0, 1);
     turn = dist(rng); // 0 또는 1
+    std::uniform_int_distribution<int> dist2(1,3);
+
+    m_player = player;
+    m_enemy = std::move(EnemySpawnManager::GetInstance().SpawnEnemy(dist2(rng), player->GetLevel()));
+
+    
     std::cout << "=========================================" << endl;
     if (turn == 0) {
         std::cout << "-------플레이어가 선턴입니다-------" << endl;
@@ -49,7 +59,7 @@ void BattleManager::InitBattle(Player* player)
     std::cout << "-&전투가 시작됩니다&-" << endl;
 }
 
-bool BattleManager::Battle()
+int BattleManager::Battle()
 {
     while (1) {
         system("cls"); // 화면 지우기 (윈도우 환경일 경우) / 필요 없으면 제거
@@ -91,7 +101,7 @@ bool BattleManager::Battle()
                 break;
             case 3:
                 cout << "\n⚠ 도망쳤습니다...\n";
-                return false;
+                return 2;
             default:
                 cout << "\n잘못된 선택입니다. 다시 입력하세요.\n";
                 break;
@@ -110,7 +120,7 @@ bool BattleManager::Battle()
             cout << "💀 패배하였습니다.... 💀\n";
             m_player->DisplayStat();
             m_player->SetCurrentHp(1);
-            return false;
+            return -1;
         }
         else if (m_enemy->IsDead()) {
             cout << "🎉 승리하였습니다! 🎉\n\n";
@@ -128,7 +138,7 @@ bool BattleManager::Battle()
             }
             cout << "\n==============================\n";
             m_player->DisplayStat();
-            return true;
+            return 1;
         }
 
         cout << "\n아무 키나 입력하면 다음 턴으로 진행합니다";

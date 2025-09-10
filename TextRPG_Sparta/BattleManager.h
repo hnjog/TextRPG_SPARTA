@@ -14,9 +14,9 @@ private:
 public:
 	static BattleManager& GetInstance();
 	BattleManager() = default;
-	void StartBattle(Player* player);
+	bool StartBattle(Player* player);
 	void InitBattle(Player* player);
-	bool Battle();
+	int Battle();
 	void EndBattle();
 };
 

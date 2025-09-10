@@ -19,6 +19,7 @@ public:
 
     bool UseItem(int idx, CharacterBase* target);
     void GetItem(ItemInstance* item);
+    bool PopItem(int idx, int stocks);
 
     void AddExp(int exp);
 
