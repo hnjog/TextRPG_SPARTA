@@ -131,7 +131,7 @@ void Player::AddExp(int exp)
 		}
 	}
 
-	cout << "현재 경험치: " << m_experience << " / " << m_level * 100 << endl;
+	cout << "현재 경험치: " << m_experience << " / " << 100 << endl;
 
 }
 
