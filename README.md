@@ -26,8 +26,6 @@ C++ : ISO C++14 표준(/std:c++14)<br>
 
 ## 프로젝트 구조
 
-// TODO - 프로젝트 완성시 재작성 예정
-
 ```less
 TextRPG_SPARTA
 +---CSVParser                     // CSV -> Json 파싱 프로젝트
@@ -103,9 +101,6 @@ TextRPG_SPARTA
   : CharacterBase 에서 상속받아 Enemy 클래스 생성<br>
     Enemy 생성자에서 enemyData를 받고 레벨에 따른 스탯 초기화<br>
     Attack/TakeDamage 함수로 Enemy 공격/피격 정의<br>
-    
-
-// TODO - 작업자 분들의 관련 클래스 내용 추가 희망!
 
 ## 추가 구현 사항
 
